@@ -57,7 +57,7 @@ label {
     padding: 10px;
     color: #f1c40f;
     display: block;
-    margin: 10px 0 5px 0; /* Diminui a margem inferior para aproximar do input */
+    margin: 10px 0 5px 0; 
 }
 
 input {
@@ -65,7 +65,7 @@ input {
     font-size: 16px;
     font-weight: bold;
     padding: 10px;
-    margin: 5px 0 10px 0; /* Ajusta a margem superior para aproximar do label */
+    margin: 5px 0 10px 0; 
     border: 2px solid #f1c40f;
     background: #fff;
     color: #000;
