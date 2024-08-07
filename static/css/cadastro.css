@@ -66,7 +66,7 @@ input {
     border: 2px solid #f1c40f;
     background: #333;
     color: #fff;
-    width: calc(100% - 24px); /* Ajuste para levar em conta o padding */
+    width: calc(100% - 24px); 
 }
 
 button {
