@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, request, flash
 import json
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'IGORKEVEN'
+app.config['SECRET_KEY'] = 'BARBEARIA'
 
 logado = False
 
