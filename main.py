@@ -39,7 +39,7 @@ def login():
                 return redirect('/adm')
 
             if usuario['nome'] == nome and usuario['senha'] == senha:
-                return render_template(".html")
+                return render_template("home.html")
             
             if cont >= len(usuarios):
                 flash('USUARIO INVALIDO')
