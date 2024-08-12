@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body {
-    background: url(../imagens/fundo.jpg) no-repeat center center fixed;
+    background: url('https://celcoin.com.br/wp-content/uploads/2023/01/Como-montar-uma-barbearia-de-s-20221110102614.png') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -10,6 +10,29 @@ body {
     margin: 0;
     font-family: 'Arial', sans-serif;
     color: #fff;
+    flex-direction: column;
+}
+
+.titulo {
+    font-size: 28px;
+    color: #f1c40f;
+    margin: 20px 0;
+}
+
+.flash_alerta {
+    background-color: #f39c12;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Largura máxima do container */
+    gap: 20px; /* Espaçamento entre os blocos */
 }
 
 #form_fundo {
@@ -19,10 +42,19 @@ body {
     border-radius: 20px;
     font-weight: bold;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    width: 400px;
     padding: 20px;
     background: rgba(0, 0, 0, 0.8);
     color: #f1c40f;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px; /* Garante uma altura mínima para os blocos */
+    flex: 1; /* Faz com que o bloco cresça para ocupar o espaço disponível */
+}
+
+#form_fundo.listaUsuarios {
+    flex: 2; /* Dá mais espaço para o bloco de usuários cadastrados */
+    max-width: 600px; /* Define uma largura máxima maior */
 }
 
 #form_frente {
@@ -34,19 +66,30 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     padding: 30px;
     color: #f1c40f;
+    flex-grow: 1; /* Faz com que o bloco de formulário cresça para ocupar o espaço disponível */
 }
 
-h1.titulo {
-    font-size: 28px;
+.listaUsuarios {
+    overflow-y: auto; /* Adiciona a barra de rolagem vertical se necessário */
+    border: 1px solid #f1c40f;
+    max-height: 500px; /* Define uma altura máxima maior para a área de rolagem */
+    padding: 10px; /* Adiciona algum preenchimento interno */
+    background-color: #000; /* Cor de fundo para o bloco de usuários cadastrados */
+}
+
+.listaUsuarios ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listaUsuarios li {
+    margin-bottom: 10px; /* Aumenta o espaçamento entre os itens da lista */
+}
+
+.listaUsuarios h1 {
+    font-size: 22px;
     color: #f1c40f;
-    margin: 20px 0;
-}
-
-.flash_alerta {
-    background-color: #f39c12;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
     margin-bottom: 20px;
 }
 
