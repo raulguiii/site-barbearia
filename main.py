@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, redirect, request, flash
 import json
+import ast 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'BARBEARIA'
@@ -17,7 +18,10 @@ def home():
 @app.route('/adm')
 def adm():
     if logado == True:
-        return render_template("cadastro.html")
+        with open('usuarios.json') as usuariosTemp:
+            usuarios = json.load(usuariosTemp)
+            
+        return render_template("cadastro.html",usuarios=usuarios)
     if logado == False:
         return redirect('/')
 
@@ -73,6 +77,23 @@ def cadastrarUsuario():
 
     return redirect('/adm')
 
+@app.route('/excluirUsuario', methods=['POST'])
+def excluirUsuario():
+    global logado
+    logado = True
+    usuario = request.form.get('usuarioPexcluir')
+    usuarioDict = ast.literal_eval(usuario)
+    nome = usuarioDict['nome']
+    with open('usuarios.json') as usuariosTemp:
+        usuariosJson = json.load(usuariosTemp)
+        for c in usuariosJson:
+            if c == usuarioDict:
+                usuariosJson.remove(usuarioDict)
+                with open('usuarios.json', 'w') as usuarioAexcluir:
+                    json.dump(usuariosJson, usuarioAexcluir, indent=4)
+
+    flash(F'{nome} EXCLUIDO')
+    return redirect('/adm')
 
 
 
