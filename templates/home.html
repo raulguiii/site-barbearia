@@ -1,15 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USUARIO</title>
+    <title>Barbearia do Seu Zé </title>
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="icon" type="image/ x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs60DcT_wpBsG698E5Pn6Qow7taxC6S2FsLQ&s">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@500;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    
-    <h1>parabens voce esta logado</h1>
-    
-    
+    <header>
+        <div class="container">
+            <div class="logo">
+                
+                <img src="" alt="Logo da Barbearia">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#about">Sobre Nós</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="overlay"></div>
+        <div class="container hero-content">
+            <h1>Bem-vindo à Barbearia do Seu Zé</h1>
+            <p>Onde o estilo encontra a tradição</p>
+            <a href="#services" class="btn">Nossos Serviços</a>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2>Serviços</h2>
+            <div class="services-grid">
+                <div class="service-box">
+                    
+                    <img src="corte masculino.jpeg" alt="Corte Masculino">
+                    <h3>Corte Masculino</h3>
+                    <p>Experiência premium em corte de cabelo masculino com os melhores barbeiros.</p>
+                </div>
+                <div class="service-box">
+                    
+                    <img src="barba.jpeg" alt="Barba">
+                    <h3>Barba</h3>
+                    <p>Tratamento completo para barba, com finalização impecável.</p>
+                </div>
+                <div class="service-box">
+                    
+                    <img src="tratamento capilar.jpeg" alt="Tratamento Capilar">
+                    <h3>Tratamento Capilar</h3>
+                    <p>Os melhores produtos e técnicas para manter seu cabelo saudável e estiloso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <div class="about-content">
+                <p>Na Barbearia do Seu Zé, combinamos tradição e modernidade para oferecer uma experiência única aos nossos clientes. Nosso espaço foi projetado para proporcionar conforto e estilo, com barbeiros altamente qualificados prontos para transformar sua aparência.</p>
+                
+                <img src="barbearia fachada.jpeg" alt="Barbearia do Seu Zé">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contato</h2>
+            <p>Entre em contato conosco para agendar seu horário ou tirar suas dúvidas.</p>
+            <form class="contact-form" id="contact-form">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Enviar</button>
+                <p class="form-message"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Barbearia do Seu Zé. Todos os direitos reservados.</p>
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="home.js"></script>
 </body>
 </html>
