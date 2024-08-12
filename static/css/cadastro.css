@@ -31,8 +31,8 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px; /* Largura máxima do container */
-    gap: 20px; /* Espaçamento entre os blocos */
+    max-width: 1200px; 
+    gap: 20px; 
 }
 
 #form_fundo {
@@ -48,13 +48,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 300px; /* Garante uma altura mínima para os blocos */
-    flex: 1; /* Faz com que o bloco cresça para ocupar o espaço disponível */
+    min-height: 300px; 
+    flex: 1; 
 }
 
 #form_fundo.listaUsuarios {
-    flex: 2; /* Dá mais espaço para o bloco de usuários cadastrados */
-    max-width: 600px; /* Define uma largura máxima maior */
+    flex: 2; 
+    max-width: 600px; 
 }
 
 #form_frente {
@@ -66,15 +66,15 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     padding: 30px;
     color: #f1c40f;
-    flex-grow: 1; /* Faz com que o bloco de formulário cresça para ocupar o espaço disponível */
+    flex-grow: 1; 
 }
 
 .listaUsuarios {
-    overflow-y: auto; /* Adiciona a barra de rolagem vertical se necessário */
+    overflow-y: auto; 
     border: 1px solid #f1c40f;
-    max-height: 500px; /* Define uma altura máxima maior para a área de rolagem */
-    padding: 10px; /* Adiciona algum preenchimento interno */
-    background-color: #000; /* Cor de fundo para o bloco de usuários cadastrados */
+    max-height: 500px;
+    padding: 10px; 
+    background-color: #000; 
 }
 
 .listaUsuarios ul {
@@ -84,7 +84,7 @@ body {
 }
 
 .listaUsuarios li {
-    margin-bottom: 10px; /* Aumenta o espaçamento entre os itens da lista */
+    margin-bottom: 10px; 
 }
 
 .listaUsuarios h1 {
