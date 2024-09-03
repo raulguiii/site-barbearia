@@ -1,13 +1,19 @@
-
-
 from flask import Flask, render_template, redirect, request, flash
-import json
-import ast 
+import mysql.connector
+import ast
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'BARBEARIA'
 
 logado = False
+
+def get_db_connection():
+    return mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="RodrigoMYSQL123",
+        database="bd_barbearia"
+    )
 
 @app.route('/')
 def home():
@@ -17,14 +23,16 @@ def home():
 
 @app.route('/adm')
 def adm():
-    if logado == True:
-        with open('usuarios.json') as usuariosTemp:
-            usuarios = json.load(usuariosTemp)
-            
-        return render_template("cadastro.html",usuarios=usuarios)
-    if logado == False:
+    if logado:
+        db = get_db_connection()
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM usuarios")
+        usuarios = cursor.fetchall()
+        cursor.close()
+        db.close()
+        return render_template("cadastro.html", usuarios=usuarios)
+    else:
         return redirect('/')
-
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -32,49 +40,49 @@ def login():
     nome = request.form.get('nome')
     senha = request.form.get('senha')
 
-    with open('usuarios.json') as usuariosTemp:
-        usuarios = json.load(usuariosTemp)
-        cont = 0
-        for usuario in usuarios:
-            cont += 1
+    # Verifica se o usuário é o administrador
+    if nome == 'adm' and senha == '000':
+        logado = True
+        return redirect('/adm')
 
-            if nome == 'adm' and senha == '000':
-                logado = True
-                return redirect('/adm')
+    # Verifica o usuário no banco de dados MySQL
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM usuarios WHERE nome=%s AND senha=%s", (nome, senha))
+    usuario = cursor.fetchone()
+    cursor.close()
+    db.close()
 
-            if usuario['nome'] == nome and usuario['senha'] == senha:
-                return render_template("home.html")
-            
-            if cont >= len(usuarios):
-                flash('USUARIO INVALIDO')
-                return redirect("/")
+    # Se o usuário existir no banco de dados
+    if usuario:
+        logado = True
+        return render_template("home.html")
+    else:
+        flash('USUÁRIO INVÁLIDO')
+        return redirect("/")
 
 @app.route('/cadastrarUsuario', methods=['POST'])
 def cadastrarUsuario():
     nome = request.form.get('nome')
     senha = request.form.get('senha')
 
-    # Carregar usuários existentes
-    with open('usuarios.json', 'r') as usuariosTemp:
-        usuarios = json.load(usuariosTemp)
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM usuarios WHERE nome=%s", (nome,))
+    usuario = cursor.fetchone()
 
-    # Verificar se o nome de usuário já existe
-    for usuario in usuarios:
-        if usuario['nome'] == nome:
-            flash('Usuário já cadastrado.')
-            return redirect('/adm')
+    if usuario:
+        flash('Usuário já cadastrado.')
+        cursor.close()
+        db.close()
+        return redirect('/adm')
 
-    # Adicionar o novo usuário se não houver duplicata
-    novo_usuario = {
-        "nome": nome,
-        "senha": senha
-    }
-    usuarios.append(novo_usuario)
+    cursor.execute("INSERT INTO usuarios (nome, senha) VALUES (%s, %s)", (nome, senha))
+    db.commit()
+    cursor.close()
+    db.close()
 
-    # Salvar a lista atualizada de usuários
-    with open('usuarios.json', 'w') as gravarTemp:
-        json.dump(usuarios, gravarTemp, indent=4)
-
+    flash('Usuário cadastrado com sucesso!')
     return redirect('/adm')
 
 @app.route('/excluirUsuario', methods=['POST'])
@@ -84,20 +92,16 @@ def excluirUsuario():
     usuario = request.form.get('usuarioPexcluir')
     usuarioDict = ast.literal_eval(usuario)
     nome = usuarioDict['nome']
-    with open('usuarios.json') as usuariosTemp:
-        usuariosJson = json.load(usuariosTemp)
-        for c in usuariosJson:
-            if c == usuarioDict:
-                usuariosJson.remove(usuarioDict)
-                with open('usuarios.json', 'w') as usuarioAexcluir:
-                    json.dump(usuariosJson, usuarioAexcluir, indent=4)
+
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("DELETE FROM usuarios WHERE nome=%s", (nome,))
+    db.commit()
+    cursor.close()
+    db.close()
 
     flash(F'{nome} EXCLUIDO')
     return redirect('/adm')
 
-
-
-
-
-if __name__ in "__main__":
-    app.run(debug=True)    
+if __name__ == "__main__":
+    app.run(debug=True)
