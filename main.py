@@ -103,5 +103,11 @@ def excluirUsuario():
     flash(F'{nome} EXCLUIDO')
     return redirect('/adm')
 
+
+@app.route('/cadastraruser')
+def cadastraruser():
+    return render_template('cadastraruser.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
