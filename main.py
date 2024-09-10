@@ -40,12 +40,12 @@ def login():
     nome = request.form.get('nome')
     senha = request.form.get('senha')
 
-    # Verifica se o usuário é o administrador
+
     if nome == 'adm' and senha == '000':
         logado = True
         return redirect('/adm')
 
-    # Verifica o usuário no banco de dados MySQL
+    
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM usuarios WHERE nome=%s AND senha=%s", (nome, senha))
@@ -53,7 +53,7 @@ def login():
     cursor.close()
     db.close()
 
-    # Se o usuário existir no banco de dados
+    
     if usuario:
         logado = True
         return render_template("home.html")
