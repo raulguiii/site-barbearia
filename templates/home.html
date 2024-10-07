@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbearia do Seu Zé </title>
     <link rel="stylesheet" href="../static/css/home.css">
-    <link rel="icon" type="image/ x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs60DcT_wpBsG698E5Pn6Qow7taxC6S2FsLQ&s">
+    <link rel="icon" type="image/ x-icon" href="pg?ex=66da32f1&is=66d8e171&hm=6e6b68ecd0d46fc4faad257d51511563414d7318db4ce2b29314e732dc6ae0be&">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@500;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -13,15 +13,14 @@
     <header>
         <div class="container">
             <div class="logo">
-                
-                <img src="" alt="Logo da Barbearia">
+                <img src="" alt="">
             </div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#home">Início</a></li>
                     <li><a href="#services">Serviços</a></li>
                     <li><a href="#about">Sobre Nós</a></li>
-                    <li><a href="#contact">Contato</a></li>
+                    <li><a href="#schedule">Agendar Corte</a></li>
                 </ul>
                 <div class="burger">
                     <div class="line1"></div>
@@ -46,19 +45,16 @@
             <h2>Serviços</h2>
             <div class="services-grid">
                 <div class="service-box">
-                    
                     <img src="https://i0.wp.com/barbeirocampinas.com.br/wp-content/uploads/2017/01/cabelo2.jpg?resize=300%2C200&ssl=1" alt="Corte Masculino">
                     <h3>Corte Masculino</h3>
                     <p>Experiência premium em corte de cabelo masculino com os melhores barbeiros.</p>
                 </div>
                 <div class="service-box">
-                    
                     <img src="https://solutudo-cdn.s3-sa-east-1.amazonaws.com/prod/adv_files/5966326b-9ea0-4979-8961-46aeac1f1cfe/61391505-eb14-4490-b253-7f6bac1e09ff.jpg" alt="Barba">
                     <h3>Barba</h3>
                     <p>Tratamento completo para barba, com finalização impecável.</p>
                 </div>
                 <div class="service-box">
-                    
                     <img src="https://seuelias.com/v2018/wp-content/uploads/2022/02/hidratacao-capilar-masculina.jpg" alt="Tratamento Capilar">
                     <h3>Tratamento Capilar</h3>
                     <p>Os melhores produtos e técnicas para manter seu cabelo saudável e estiloso.</p>
@@ -72,28 +68,41 @@
             <h2>Sobre Nós</h2>
             <div class="about-content">
                 <p>Na Barbearia do Seu Zé, combinamos tradição e modernidade para oferecer uma experiência única aos nossos clientes. Nosso espaço foi projetado para proporcionar conforto e estilo, com barbeiros altamente qualificados prontos para transformar sua aparência.</p>
-                
                 <img src="https://img.freepik.com/psd-premium/maquete-da-placa-3d-da-fachada-da-barbearia_204971-171.jpg?w=740" alt="Barbearia do Seu Zé">
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact-section">
+    <section id="schedule" class="contact-section">
         <div class="container">
-            <h2>Contato</h2>
-            <p>Entre em contato conosco para agendar seu horário ou tirar suas dúvidas.</p>
-            <form class="contact-form" id="contact-form">
-                <label for="name">Nome:</label>
+            <h2>Agendar Corte</h2>
+            <p>Agende seu horário conosco preenchendo as informações abaixo.</p>
+            <form class="contact-form" id="schedule-form">
+                <label for="name">Nome Completo:</label>
                 <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Mensagem:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Enviar</button>
+    
+                <label for="phone">Telefone:</label>
+                <input type="number" id="phone" name="phone" required>
+    
+                <label for="service">Serviço Desejado:</label>
+                <select id="service" name="service" required>
+                    <option value="corte">Corte de Cabelo</option>
+                    <option value="barba">Barba</option>
+                    <option value="tratamento">Tratamento Capilar</option>
+                </select>
+    
+                <label for="date">Data:</label>
+                <input type="date" id="date" name="date" required>
+    
+                <label for="time">Horário:</label>
+                <input type="time" id="time" name="time" required>
+    
+                <button type="submit">Agendar</button>
                 <p class="form-message"></p>
             </form>
         </div>
     </section>
+    
 
     <footer>
         <div class="container">
