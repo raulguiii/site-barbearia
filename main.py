@@ -104,9 +104,9 @@ def excluirUsuario():
     return redirect('/adm')
 
 
-@app.route('/cadastraruser')
+@app.route('/home')
 def cadastraruser():
-    return render_template('cadastraruser.html')
+    return render_template('home.html')
 
 
 if __name__ == "__main__":
