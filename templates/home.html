@@ -77,29 +77,33 @@
         <div class="container">
             <h2>Agendar Corte</h2>
             <p>Agende seu horário conosco preenchendo as informações abaixo.</p>
-            <form class="contact-form" id="schedule-form">
+            <form class="contact-form" id="schedule-form" method="post" action="/agendar">
                 <label for="name">Nome Completo:</label>
                 <input type="text" id="name" name="name" required>
-    
+                
                 <label for="phone">Telefone:</label>
-                <input type="number" id="phone" name="phone" required>
-    
+                <input type="tel" id="phone" name="phone" required maxlength="11" pattern="\d{11}" title="Insira um número de telefone válido (11 dígitos).">
+                
                 <label for="service">Serviço Desejado:</label>
                 <select id="service" name="service" required>
                     <option value="corte">Corte de Cabelo</option>
                     <option value="barba">Barba</option>
                     <option value="tratamento">Tratamento Capilar</option>
                 </select>
-    
+                
                 <label for="date">Data:</label>
                 <input type="date" id="date" name="date" required>
-    
+                
                 <label for="time">Horário:</label>
                 <input type="time" id="time" name="time" required>
-    
+                
                 <button type="submit">Agendar</button>
                 <p class="form-message"></p>
             </form>
+            
+
+            
+            
         </div>
     </section>
     
