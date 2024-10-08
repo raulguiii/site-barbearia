@@ -109,5 +109,50 @@ def cadastraruser():
     return render_template('home.html')
 
 
+@app.route('/agendar', methods=['POST'])
+def agendar():
+    nome = request.form.get('name')
+    telefone = request.form.get('phone')
+    servico = request.form.get('service')
+    data1 = request.form.get('date')
+    horario = request.form.get('time')
+
+    # Verificando se os campos estão preenchidos
+    if not nome or not telefone or not servico or not data1 or not horario:
+        flash('Por favor, preencha todos os campos!')
+        return redirect('/')
+
+    # Verifique se o horário já está reservado
+    db = get_db_connection()
+    cursor = db.cursor()
+    cursor.execute(
+        "SELECT * FROM agendamentos WHERE data1 = %s AND horario = %s",
+        (data1, horario)
+    )
+    agendamento_existente = cursor.fetchone()
+
+    if agendamento_existente:
+        flash('Esse horário já está agendado. Por favor, escolha outro horário.')
+        cursor.close()
+        db.close()
+        return redirect('/')
+
+    try:
+        cursor.execute(
+            "INSERT INTO agendamentos (nome, telefone, servico, data1, horario) VALUES (%s, %s, %s, %s, %s)",
+            (nome, telefone, servico, data1, horario)
+        )
+        db.commit()
+        flash('Agendamento realizado com sucesso!')
+    except mysql.connector.Error as err:
+        print(f"Erro ao inserir no banco de dados: {err}")
+        flash(f'Erro ao realizar o agendamento: {err}')
+    finally:
+        cursor.close()
+        db.close()
+
+    return redirect('/')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
