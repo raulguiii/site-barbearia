@@ -117,12 +117,12 @@ def agendar():
     data1 = request.form.get('date')
     horario = request.form.get('time')
 
-    # Verificando se os campos estão preenchidos
+    
     if not nome or not telefone or not servico or not data1 or not horario:
         flash('Por favor, preencha todos os campos!')
         return redirect('/')
 
-    # Verifique se o horário já está reservado
+  
     db = get_db_connection()
     cursor = db.cursor()
     cursor.execute(
