@@ -10,14 +10,23 @@ body {
     margin: 0;
     font-family: 'Arial', sans-serif;
     color: #fff;
+    position: relative;
 }
 
-.flash_alerta{
+.flash_alerta {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: red;
-    font-size: 50px;
-    border-radius: 30px;  
-    font-weight: bold;  
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: bold;
     text-align: center;
+    padding: 15px;
+    width: 90%;
+    max-width: 400px;
+    color: white;
 }
 
 #form_fundo {
@@ -109,3 +118,25 @@ button:hover {
     color: #f1c40f;
     border: 2px solid #f1c40f;
 }
+
+#link_cadastro {
+    font-size: 16px;
+    color: #f1c40f;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#link_cadastro:hover {
+    text-decoration: underline;
+}
+    #btn_cadastro {
+        color: yellow; 
+        text-decoration: none;
+    }
+    
+    #btn_cadastro:hover {
+        text-decoration: underline; 
+    }
+    
+
