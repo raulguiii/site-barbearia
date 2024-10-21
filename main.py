@@ -54,17 +54,20 @@ def login():
 
         if usuario:
             logado = True
-            return redirect('/agendamentos')  # Redireciona para a nova rota
+            global nome_barbeiro_logado  
+            nome_barbeiro_logado = nome  
+            return redirect('/agendamentos')  
         else:
             flash('USUÁRIO INVÁLIDO')
             return redirect("/")
-    return render_template('login.html')  
+    return render_template('login.html')
+
 
 @app.route('/agendamentos')
 def listar_agendamentos():
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM agendamentos ORDER BY data1 ASC, horario ASC")  # Ordena por data e horário
+    cursor.execute("SELECT * FROM agendamentos ORDER BY data1 ASC, horario ASC") 
     agendamentos = cursor.fetchall()
     cursor.close()
     db.close()
@@ -159,6 +162,30 @@ def agendar():
         db.close()
 
     return redirect('/')
+
+@app.route('/candidatar/<int:agendamento_id>', methods=['GET'])
+def candidatar(agendamento_id):
+    global logado
+    if not logado:
+        return redirect('/')  
+
+    
+    nome_barbeiro = nome_barbeiro_logado  
+
+    db = get_db_connection()
+    cursor = db.cursor()
+    cursor.execute(
+        "UPDATE agendamentos SET candidato = 1, barbeiro_nome = %s WHERE id = %s",
+        (nome_barbeiro, agendamento_id)
+    )
+    db.commit()
+    cursor.close()
+    db.close()
+
+    flash('Você se candidatou com sucesso!')
+    return redirect('/agendamentos')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
