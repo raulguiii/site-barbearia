@@ -1,12 +1,9 @@
 
-document.querySelectorAll('nav ul li a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
+document.querySelector('.fa-user').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.location.href = '/login';
 });
+
 
 // Menu hamburguer
 const burger = document.querySelector('.burger');
@@ -15,6 +12,7 @@ const navLinks = document.querySelectorAll('.nav-links li');
 
 burger.addEventListener('click', () => {
     nav.classList.toggle('nav-active');
+    
 
     navLinks.forEach((link, index) => {
         if (link.style.animation) {
