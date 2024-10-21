@@ -25,10 +25,10 @@ table {
 }
 
 th, td {
-    padding: 30px; /* Aumenta o espaço entre os agendamentos */
+    padding: 30px; 
     text-align: left;
     border-bottom: 1px solid #ddd;
-    text-transform: uppercase; /* Faz o texto ficar em maiúsculas */
+    text-transform: uppercase; 
 }
 
 th {
@@ -40,12 +40,12 @@ tr:hover {
 }
 
 a {
-    display: block; /* Mantém o botão como bloco */
+    display: block; 
     width: 100px;
     margin: 20px auto;
     text-align: center;
     padding: 10px;
-    background-color: #000; /* Botão preto */
+    background-color: #000; 
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -53,5 +53,5 @@ a {
 }
 
 a:hover {
-    background-color: #333; /* Cor ao passar o mouse */
+    background-color: #333; 
 }
