@@ -11,7 +11,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="RodrigoMYSQL123",
+        password="raulgui123!",
         database="bd_barbearia"
     )
 
@@ -54,11 +54,22 @@ def login():
 
         if usuario:
             logado = True
-            return render_template("home.html")
+            return redirect('/agendamentos')  # Redireciona para a nova rota
         else:
             flash('USUÁRIO INVÁLIDO')
             return redirect("/")
     return render_template('login.html')  
+
+@app.route('/agendamentos')
+def listar_agendamentos():
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM agendamentos ORDER BY data1 ASC, horario ASC")  # Ordena por data e horário
+    agendamentos = cursor.fetchall()
+    cursor.close()
+    db.close()
+
+    return render_template("agendamentos.html", agendamentos=agendamentos)
 
 
 @app.route('/cadastrarUsuario', methods=['POST'])
@@ -100,7 +111,7 @@ def excluirUsuario():
     cursor.close()
     db.close()
 
-    flash(F'{nome} EXCLUIDO')
+    flash(f'{nome} EXCLUÍDO')
     return redirect('/adm')
 
 @app.route('/home')
