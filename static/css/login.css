@@ -131,9 +131,9 @@ button:hover {
     text-decoration: underline;
 }
     #btn_cadastro {
-        color: yellow; 
+        color: rgb(247, 247, 244); 
         text-decoration: none;
-    }
+    }   
     
     #btn_cadastro:hover {
         text-decoration: underline; 
