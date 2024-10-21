@@ -19,7 +19,7 @@ def get_db_connection():
 def home():
     global logado
     logado = False
-    return render_template('login.html')
+    return render_template('home.html')
 
 @app.route('/adm')
 def adm():
@@ -34,32 +34,32 @@ def adm():
     else:
         return redirect('/')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST']) 
 def login():
     global logado
-    nome = request.form.get('nome')
-    senha = request.form.get('senha')
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        senha = request.form.get('senha')
 
+        if nome == 'adm' and senha == '000':
+            logado = True
+            return redirect('/adm')
 
-    if nome == 'adm' and senha == '000':
-        logado = True
-        return redirect('/adm')
+        db = get_db_connection()
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM usuarios WHERE nome=%s AND senha=%s", (nome, senha))
+        usuario = cursor.fetchone()
+        cursor.close()
+        db.close()
 
-    
-    db = get_db_connection()
-    cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM usuarios WHERE nome=%s AND senha=%s", (nome, senha))
-    usuario = cursor.fetchone()
-    cursor.close()
-    db.close()
+        if usuario:
+            logado = True
+            return render_template("home.html")
+        else:
+            flash('USUÁRIO INVÁLIDO')
+            return redirect("/")
+    return render_template('login.html')  
 
-    
-    if usuario:
-        logado = True
-        return render_template("home.html")
-    else:
-        flash('USUÁRIO INVÁLIDO')
-        return redirect("/")
 
 @app.route('/cadastrarUsuario', methods=['POST'])
 def cadastrarUsuario():
@@ -103,11 +103,9 @@ def excluirUsuario():
     flash(F'{nome} EXCLUIDO')
     return redirect('/adm')
 
-
 @app.route('/home')
 def cadastraruser():
     return render_template('home.html')
-
 
 @app.route('/agendar', methods=['POST'])
 def agendar():
@@ -117,12 +115,10 @@ def agendar():
     data1 = request.form.get('date')
     horario = request.form.get('time')
 
-    
     if not nome or not telefone or not servico or not data1 or not horario:
         flash('Por favor, preencha todos os campos!')
         return redirect('/')
 
-  
     db = get_db_connection()
     cursor = db.cursor()
     cursor.execute(
@@ -152,7 +148,6 @@ def agendar():
         db.close()
 
     return redirect('/')
-
 
 if __name__ == "__main__":
     app.run(debug=True)
