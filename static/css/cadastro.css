@@ -155,3 +155,28 @@ button:hover {
 }
 
 
+.button-container {
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%; 
+    max-width: 1200px; 
+    margin-top: 20px; 
+}
+
+#btn_relatorio {
+    margin-left: 10px; 
+    background-color: transparent;
+    color: #f1c40f;
+    border: 2px solid #000000;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    width: 25%;
+    padding: 10px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+#btn_relatorio:hover {
+    background-color: #f1c40f;
+    color: #000;
+}
