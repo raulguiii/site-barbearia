@@ -116,8 +116,6 @@ def excluirUsuario():
     return redirect('/cadastrados') 
 
 
-
-
 @app.route('/home')
 def cadastraruser():
     return render_template('home.html')
@@ -198,6 +196,12 @@ def usuarios_cadastrados():
         return render_template("cadastrados.html", usuarios=usuarios)
     else:
         return redirect('/')
+    
+
+@app.route('/relatorio')
+def relatorio():
+    return render_template('relatorio.html')
+
 
 
 if __name__ == "__main__":
