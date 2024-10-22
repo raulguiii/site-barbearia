@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+body {
+    background: url('') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    flex-direction: column;
+}
+
+.titulo {
+    font-size: 28px;
+    color: #f1c40f;
+    margin: 20px 0;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+}
+
+#form_fundo {
+    backdrop-filter: blur(10px);
+    opacity: 0.9;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #f1c40f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 400px;
+    width: 100%;
+}
+
+.listaUsuarios {
+    overflow-y: auto;
+    border: 1px solid #f1c40f;
+    max-height: 400px;
+    padding: 20px;
+    background-color: #000;
+    border-radius: 10px;
+}
+
+.listaUsuarios ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listaUsuarios li {
+    margin-bottom: 10px;
+}
+
+.listaUsuarios h1 {
+    font-size: 22px;
+    color: #f1c40f;
+    margin-bottom: 20px;
+}
+
+button {
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #f1c40f;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #000;
+    color: #f1c40f;
+    border: 2px solid #f1c40f;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+.flash_alerta {
+    background-color: #f39c12; 
+    color: #fff; 
+    padding: 15px; 
+    border-radius: 5px; 
+    text-align: center;
+    margin: 20px 0; 
+    font-weight: bold; 
+    position: relative; 
+    animation: fadeIn 0.5s; 
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; 
+    }
+    to {
+        opacity: 1; 
+    }
+}
+
+.flash_alerta::after {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer; 
+    color: #fff; 
+}
