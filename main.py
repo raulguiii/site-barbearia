@@ -115,7 +115,6 @@ def excluirUsuario():
     flash(f'{nome} EXCLUÍDO com sucesso!')  
     return redirect('/cadastrados') 
 
-
 @app.route('/home')
 def cadastraruser():
     return render_template('home.html')
@@ -168,7 +167,6 @@ def candidatar(agendamento_id):
     if not logado:
         return redirect('/')  
 
-    
     nome_barbeiro = nome_barbeiro_logado  
 
     db = get_db_connection()
@@ -196,10 +194,40 @@ def usuarios_cadastrados():
         return render_template("cadastrados.html", usuarios=usuarios)
     else:
         return redirect('/')
-    
+
 @app.route('/relatorio')
 def relatorio():
-    return render_template('relatorio.html')
+    if not logado:
+        return redirect('/')
+    
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
+
+    # Serviço mais realizado
+    cursor.execute("""
+        SELECT servico, COUNT(*) as total
+        FROM agendamentos
+        GROUP BY servico
+        ORDER BY total DESC
+        LIMIT 1
+    """)
+    servico_mais_realizado = cursor.fetchone()
+
+    # Barbeiro que mais se candidatou
+    cursor.execute("""
+        SELECT barbeiro_nome, COUNT(*) as total
+        FROM agendamentos
+        WHERE candidato = 1
+        GROUP BY barbeiro_nome
+        ORDER BY total DESC
+        LIMIT 1
+    """)
+    barbeiro_mais_candidatou = cursor.fetchone()
+
+    cursor.close()
+    db.close()
+
+    return render_template('relatorio.html', servico=servico_mais_realizado, barbeiro=barbeiro_mais_candidatou)
 
 @app.route('/cadastro')
 def cadastro():
