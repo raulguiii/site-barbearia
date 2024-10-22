@@ -180,3 +180,31 @@ button:hover {
     background-color: #f1c40f;
     color: #000;
 }
+
+.footer-buttons {
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%; 
+    max-width: 1200px; 
+    position: absolute; 
+    bottom: 20px; 
+    left: 50%; 
+    transform: translateX(-50%);
+}
+
+.footer-buttons button {
+    background-color: transparent; 
+    color: #f1c40f;
+    border: 2px solid #000000;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    width: 25%; 
+    padding: 10px; 
+    border-radius: 50px; 
+    text-align: center; 
+}
+
+.footer-buttons button:hover {
+    background-color: #f1c40f;
+    color: #000;
+}
