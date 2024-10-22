@@ -16,7 +16,8 @@
             {{menssagem[0]}}
         </div>
     {% endif %}
-    <h1 class="titulo">FAÇA CADASTRO</h1>
+    <button id="btn_usuarios" onclick="window.location.href='/cadastrados'">VER USUÁRIOS CADASTRADOS</button>
+    <h1 class="titulo"></h1>
 
     <div class="container">
         <div id="form_fundo">
@@ -36,31 +37,7 @@
                 </form>
             </div>
         </div>
-
-        <div id="form_fundo" class="listaUsuarios">
-            <h1>USUARIOS CADASTRADOS</h1>
-            <div id="form_frente" class="listaUsuarios">
-                {% if usuarios %}
-                    {% for c in usuarios %}
-                    <form action="/excluirUsuario" method="post">
-                        <ul>
-                            <input type="hidden" name="usuarioPexcluir" value="{{c}}">
-                            <li>NOME: {{c['nome']}}</li><br>
-                            <li>SENHA: {{c['senha']}}</li>
-                        </ul>
-                        <button type="submit">EXCLUIR</button>
-                    </form>
-                        ---------------------------------------------
-                    {% endfor %}
-                {% else %}
-                <h1>nao existe usuarios cadastrados</h1>
-                {% endif %}
-            </div>
-        </div>
-    
     </div>
 </body>
-
-
 
 </html>
