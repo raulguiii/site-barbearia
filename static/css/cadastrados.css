@@ -123,14 +123,19 @@ h1 {
     color: #fff; 
 }
 
-.seta-voltar {
+.btn-voltar {
     display: inline-block;
-    padding: 20px 20px 20px 10px; 
+    padding: 10px 20px;
     text-decoration: none;
     font-size: 18px;
     color: #000; 
+    background-color: #f1c40f; 
+    border-radius: 10px; 
+    margin-bottom: 20px;
 }
 
-.seta-voltar:hover {
-    text-decoration: underline;
+.btn-voltar:hover {
+    background-color: #000; 
+    color: #f1c40f; 
+    border: 2px solid #f1c40f; 
 }
