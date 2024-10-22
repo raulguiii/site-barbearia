@@ -197,12 +197,13 @@ def usuarios_cadastrados():
     else:
         return redirect('/')
     
-
 @app.route('/relatorio')
 def relatorio():
     return render_template('relatorio.html')
 
-
+@app.route('/cadastro')
+def cadastro():
+    return render_template('cadastro.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
