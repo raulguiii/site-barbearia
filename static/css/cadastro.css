@@ -1,23 +1,40 @@
 @charset "UTF-8";
 
 body {
-    background: url('https://celcoin.com.br/wp-content/uploads/2023/01/Como-montar-uma-barbearia-de-s-20221110102614.png') no-repeat center center fixed;
+    background: url('') no-repeat center center fixed;
     background-size: cover;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     margin: 0;
     font-family: 'Arial', sans-serif;
     color: #fff;
-    flex-direction: column;
 }
 
 .titulo {
     font-size: 28px;
     color: #f1c40f;
     margin: 20px 0;
+    position: relative;
+    text-transform: uppercase;
+    text-align: center;
 }
+
+.titulo::before {
+    /* Ícone removido */
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 40px;
+    color: #f1c40f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 
 .flash_alerta {
     background-color: #f39c12;
@@ -25,14 +42,18 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px; 
-    gap: 20px; 
+    max-width: 1200px;
+    gap: 20px;
+    align-items: flex-start; 
 }
 
 #form_fundo {
@@ -47,14 +68,9 @@ body {
     color: #f1c40f;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 300px; 
-    flex: 1; 
-}
-
-#form_fundo.listaUsuarios {
-    flex: 2; 
-    max-width: 600px; 
+    justify-content: center; 
+    min-height: 300px;
+    width: 100%;
 }
 
 #form_frente {
@@ -66,32 +82,29 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     padding: 30px;
     color: #f1c40f;
-    flex-grow: 1; 
+    width: 94%; 
 }
 
-.listaUsuarios {
-    overflow-y: auto; 
-    border: 1px solid #f1c40f;
-    max-height: 500px;
-    padding: 10px; 
-    background-color: #000; 
-}
-
-.listaUsuarios ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.listaUsuarios li {
-    margin-bottom: 10px; 
-}
-
-.listaUsuarios h1 {
-    font-size: 22px;
+#btn_usuarios {
+    margin-top: 20px;
+    background-color: transparent;
     color: #f1c40f;
-    margin-bottom: 20px;
+    border: 2px solid #000000;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    width: 25%; 
+    padding: 10px; 
+    border-radius: 50px; 
+    text-align: center; 
+    align-self: flex-start; 
 }
+
+#btn_usuarios:hover {
+    background-color: #f1c40f;
+    color: #000;
+}
+
+
 
 label {
     font-size: 18px;
@@ -99,6 +112,7 @@ label {
     color: #f1c40f;
     display: block;
     margin: 10px 0;
+    text-transform: uppercase;
 }
 
 input {
@@ -109,7 +123,12 @@ input {
     border: 2px solid #f1c40f;
     background: #333;
     color: #fff;
-    width: calc(100% - 24px); 
+    width: calc(100% - 24px);
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #fff;
 }
 
 button {
@@ -126,11 +145,7 @@ button {
     width: 100%;
     position: relative;
     overflow: hidden;
-}
-
-button span {
-    position: absolute;
-    display: block;
+    text-transform: uppercase;
 }
 
 button:hover {
@@ -138,3 +153,5 @@ button:hover {
     color: #f1c40f;
     border: 2px solid #f1c40f;
 }
+
+
