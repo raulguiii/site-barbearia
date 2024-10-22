@@ -101,8 +101,6 @@ def cadastrarUsuario():
 
 @app.route('/excluirUsuario', methods=['POST'])
 def excluirUsuario():
-    global logado
-    logado = True
     usuario = request.form.get('usuarioPexcluir')
     usuarioDict = ast.literal_eval(usuario)
     nome = usuarioDict['nome']
@@ -114,8 +112,11 @@ def excluirUsuario():
     cursor.close()
     db.close()
 
-    flash(f'{nome} EXCLUÍDO')
-    return redirect('/adm')
+    flash(f'{nome} EXCLUÍDO com sucesso!')  
+    return redirect('/cadastrados') 
+
+
+
 
 @app.route('/home')
 def cadastraruser():
@@ -185,6 +186,18 @@ def candidatar(agendamento_id):
     flash('Você se candidatou com sucesso!')
     return redirect('/agendamentos')
 
+@app.route('/cadastrados')
+def usuarios_cadastrados():
+    if logado:
+        db = get_db_connection()
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM usuarios")
+        usuarios = cursor.fetchall()
+        cursor.close()
+        db.close()
+        return render_template("cadastrados.html", usuarios=usuarios)
+    else:
+        return redirect('/')
 
 
 if __name__ == "__main__":
