@@ -203,7 +203,7 @@ def relatorio():
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
 
-    # Serviço mais realizado
+
     cursor.execute("""
         SELECT servico, COUNT(*) as total
         FROM agendamentos
@@ -213,7 +213,7 @@ def relatorio():
     """)
     servico_mais_realizado = cursor.fetchone()
 
-    # Barbeiro que mais se candidatou
+    
     cursor.execute("""
         SELECT barbeiro_nome, COUNT(*) as total
         FROM agendamentos
