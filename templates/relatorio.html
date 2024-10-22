@@ -12,7 +12,23 @@
 <body>
     <h1 class="titulo">Relatório</h1>
     <div class="container">
-        <p>Aqui você pode adicionar as informações do relatório.</p>
+        <h2>Serviço Mais Realizado</h2>
+        {% if servico %}
+            <p>Serviço: {{ servico.servico }}</p>
+            <p>Total: {{ servico.total }}</p>
+        {% else %}
+            <p>Nenhum serviço realizado ainda.</p>
+        {% endif %}
+        
+        <h2>Barbeiro que Mais se Candidatou</h2>
+        {% if barbeiro %}
+            <p>Barbeiro: {{ barbeiro.barbeiro_nome }}</p>
+            <p>Total de Candidaturas: {{ barbeiro.total }}</p>
+        {% else %}
+            <p>Nenhum barbeiro se candidatou ainda.</p>
+        {% endif %}
+        
+        <a href="/cadastro" class="btn-voltar">Voltar ao Cadastro</a>
     </div>
 </body>
 
