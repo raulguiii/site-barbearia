@@ -13,15 +13,18 @@
     {% set menssagem = get_flashed_messages() %}
     {% if menssagem %}
         <div class="flash_alerta">
-            {{menssagem[0]}}
+            {{ menssagem[0] }}
         </div>
     {% endif %}
-    <button id="btn_usuarios" onclick="window.location.href='/cadastrados'">VER USUÁRIOS CADASTRADOS</button>
+    <div class="button-container">
+        <button id="btn_usuarios" onclick="window.location.href='/cadastrados'">VER BARBEIROS CADASTRADOS</button>
+        <button id="btn_relatorio" onclick="window.location.href='/relatorio'">RELATÓRIO</button> <!-- Novo botão -->
+    </div>
     <h1 class="titulo"></h1>
 
     <div class="container">
         <div id="form_fundo">
-            <h1>CADASTRAR USUARIO</h1>
+            <h1>CADASTRAR NOVO BARBEIRO</h1>
             <div id="form_frente">
                 <form action="/cadastrarUsuario" id="login" method="post">
                     <label for="nome">NOME</label>
