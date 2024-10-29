@@ -23,7 +23,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6); /* Escurecendo um pouco mais para melhor legibilidade */
+    background: rgba(0, 0, 0, 0.6); 
     z-index: 1;
 }
 
@@ -33,38 +33,38 @@ body > * {
 }
 
 .titulo {
-    font-size: 42px; /* Aumentado para mais destaque */
-    color: #f39c12; /* Alterada a cor do título para combinar melhor com o fundo */
+    font-size: 42px; 
+    color: #f39c12; 
     margin: 20px 0;
     text-transform: uppercase;
-    letter-spacing: 3px; /* Aumenta o espaçamento entre letras */
+    letter-spacing: 3px;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Mudei para coluna para que os campos fiquem embaixo do título */
+    flex-direction: column; 
     width: 100%;
-    max-width: 600px; /* Reduzido para um design mais compacto */
+    max-width: 600px; 
     gap: 20px;
     padding: 20px;
 }
 
 #form_fundo {
-    backdrop-filter: blur(15px); /* Blur mais intenso para um efeito mais interessante */
+    backdrop-filter: blur(15px); 
     opacity: 0.95;
     text-align: center;
     border-radius: 20px;
     font-weight: bold;
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.6); /* Sombras mais marcantes */
-    padding: 40px; /* Aumentado para mais espaço interno */
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.6);
+    padding: 40px;
     background: rgba(0, 0, 0, 0.85);
-    color: #fff; /* Ajuste na cor do texto para melhor contraste */
+    color: #fff; 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; 
     min-height: 400px;
     width: 100%;
 }
@@ -72,12 +72,12 @@ body > * {
 .listaUsuarios {
     overflow-y: auto;
     border: 1px solid #f39c12;
-    max-height: 300px; /* Mantenha a altura para não ocupar muito espaço */
+    max-height: 300px; 
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.9);
     border-radius: 10px;
-    width: 100%; /* Mantém 100% para ocupar a largura do pai */
-    max-width: 800px; /* Aumentado para maior largura */
+    width: 100%; 
+    max-width: 800px; 
 }
 
 .listaUsuarios ul {
@@ -87,35 +87,35 @@ body > * {
 }
 
 .listaUsuarios li {
-    margin-bottom: 20px; /* Aumentado para dar mais espaço entre os itens */
+    margin-bottom: 20px; 
     padding: 10px;
-    border-bottom: 1px solid #444; /* Linha separando os itens */
-    transition: background 0.3s; /* Transição suave no fundo */
-    text-align: left; /* Alinhamento à esquerda */
+    border-bottom: 1px solid #444; 
+    transition: background 0.3s;
+    text-align: left;
 }
 
 .listaUsuarios li:last-child {
-    border: none; /* Remove a borda do último item */
+    border: none; 
 }
 
 .listaUsuarios .usuario-info {
     display: flex;
-    flex-direction: column; /* Alinhamento em coluna para NOME e SENHA */
-    margin-bottom: 10px; /* Espaço abaixo do bloco de informações do usuário */
+    flex-direction: column;
+    margin-bottom: 10px; 
 }
 
 .listaUsuarios .usuario-info h2,
 .listaUsuarios .usuario-info h3 {
-    margin: 0; /* Remove margens para alinhar melhor */
+    margin: 0;
 }
 
 button {
-    font-size: 20px; /* Aumentado para melhorar a legibilidade */
+    font-size: 20px; 
     font-weight: bold;
     border-radius: 10px;
     background-color: #f39c12;
     color: #000;
-    padding: 15px 30px; /* Aumentado para mais conforto ao clicar */
+    padding: 15px 30px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -125,11 +125,11 @@ button {
 button:hover {
     background-color: #000;
     color: #f39c12;
-    border: 2px solid #f39c12; /* Altera a borda ao passar o mouse */
+    border: 2px solid #f39c12;
 }
 
 .flash_alerta {
-    background-color: #e67e22; /* Cor do alerta ajustada para destaque */
+    background-color: #e67e22; 
     color: #fff;
     padding: 15px;
     border-radius: 5px;
