@@ -16,77 +16,77 @@ body {
 
 h1 {
     text-align: center;
-    margin: 20px 0; /* Espaçamento maior */
-    font-size: 3em; /* Aumentando o tamanho */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Sombras mais intensas */
-    font-weight: 700; /* Font-weight mais forte */
+    margin: 20px 0; 
+    font-size: 3em; 
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); 
+    font-weight: 700; 
 }
 
 table {
     width: 80%;
-    margin: 40px auto; /* Espaçamento maior para se destacar */
+    margin: 40px auto; 
     border-collapse: collapse;
-    background-color: rgba(0, 0, 0, 0.8); /* Escurecendo a cor de fundo */
-    border-radius: 12px; /* Bordas arredondadas */
+    background-color: rgba(0, 0, 0, 0.8); 
+    border-radius: 12px; 
     overflow: hidden; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra na tabela */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
 }
 
 th, td {
-    padding: 20px; /* Espaçamento interno reduzido */
+    padding: 20px; 
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Linha inferior sutil */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
     text-transform: uppercase; 
-    color: #ffffff; /* Cor do texto para cabeçalhos e células */
+    color: #ffffff; 
 }
 
 th {
-    background-color: rgba(255, 255, 255, 0.1); /* Título da coluna mais claro */
-    font-weight: bold; /* Negrito para cabeçalhos */
+    background-color: rgba(255, 255, 255, 0.1); 
+    font-weight: bold; 
 }
 
 tr:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Cor do fundo ao passar o mouse */
-    transition: background-color 0.3s ease; /* Transição suave */
+    background-color: rgba(255, 255, 255, 0.2); 
+    transition: background-color 0.3s ease; 
 }
 
 a {
-    display: inline-block; /* Alinhando o link */
-    width: 120px; /* Largura do link */
+    display: inline-block; 
+    width: 120px; 
     margin: 20px auto; 
     text-align: center;
-    padding: 12px; /* Aumentando o preenchimento */
-    background-color: #f4b41a; /* Cor de fundo do botão */
-    color: #000; /* Cor do texto */
+    padding: 12px; 
+    background-color: #f4b41a; 
+    color: #000; 
     text-decoration: none;
-    border-radius: 30px; /* Bordas mais arredondadas */
-    font-weight: 600; /* Font-weight mais forte */
-    transition: background-color 0.3s, transform 0.3s; /* Transições suaves */
+    border-radius: 30px; 
+    font-weight: 600; 
+    transition: background-color 0.3s, transform 0.3s; 
 }
 
 a:hover {
-    background-color: #e0a607; /* Cor ao passar o mouse */
-    transform: translateY(-3px); /* Efeito de movimento */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+    background-color: #e0a607; 
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 /* Estilização do botão "Voltar para a Home" */
 .back-home-button {
-    display: inline-block; /* Alinhando o botão */
-    width: 150px; /* Largura do botão */
-    margin: 40px auto; /* Centralizando com margem superior */
-    padding: 15px; /* Preenchimento do botão */
-    background-color: #f4b41a; /* Cor de fundo do botão */
-    color: #000; /* Cor do texto */
+    display: inline-block; 
+    width: 150px; 
+    margin: 40px auto; 
+    padding: 15px; 
+    background-color: #f4b41a; 
+    color: #000; 
     text-align: center;
     text-decoration: none;
-    border-radius: 30px; /* Bordas arredondadas */
-    font-weight: 600; /* Font-weight mais forte */
-    transition: background-color 0.3s, transform 0.3s; /* Transições suaves */
+    border-radius: 30px; 
+    font-weight: 600; 
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .back-home-button:hover {
-    background-color: #e0a607; /* Cor ao passar o mouse */
-    transform: translateY(-3px); /* Efeito de movimento */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+    background-color: #e0a607; 
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
