@@ -15,24 +15,24 @@ body {
 }
 
 .top-buttons {
-    display: flex; /* Alinha os botões horizontalmente */
-    gap: 15px; /* Espaçamento entre os botões */
-    justify-content: center; /* Centraliza os botões horizontalmente */
-    align-items: center; /* Alinha verticalmente os botões */
-    width: 80%; /* Preenche a largura total da tela */
-    padding: 20px 30px; /* Espaçamento uniformizado em cima e embaixo */
-    position: fixed; /* Mantém a barra no topo da tela */
-    top: 0; /* Fica na parte superior */
-    z-index: 100; /* Garante que a barra fique acima de outros elementos */
-    border-radius: 0 0 10px 10px; /* Borda arredondada apenas na parte inferior */
+    display: flex; 
+    gap: 15px; 
+    justify-content: center; 
+    align-items: center;
+    width: 80%; 
+    padding: 20px 30px; 
+    position: fixed; 
+    top: 0; 
+    z-index: 100;
+    border-radius: 0 0 10px 10px;
 }
 
 .top-buttons a {
     color: #f1c40f;
     text-decoration: none;
-    font-size: 16px; /* Diminuído de 18px para 16px */
+    font-size: 16px; 
     font-weight: bold;
-    padding: 8px 16px; /* Diminuído para 8px 16px */
+    padding: 8px 16px;
     border: 2px solid transparent;
     border-radius: 20px;
     transition: all 0.3s ease;
@@ -47,7 +47,7 @@ body {
 .titulo {
     font-size: 28px;
     color: #f1c40f;
-    margin: 60px 0 40px; /* Espaço em cima e embaixo do título */
+    margin: 60px 0 40px;
     position: relative;
     text-transform: uppercase;
     text-align: center;
@@ -79,14 +79,14 @@ body {
 
 .container {
     display: flex;
-    justify-content: center; /* Centraliza os itens dentro da container */
+    justify-content: center;
     width: 100%;
     max-width: 1200px;
-    gap: 20px; /* Espaço entre os itens */
+    gap: 20px; 
     align-items: flex-start; 
-    padding-top: 70px; /* Deixa espaço para a barra de navegação fixa */
-    padding-bottom: 70px; /* Adicionado espaço na parte inferior */
-    margin: 0 auto; /* Centraliza a container na tela */
+    padding-top: 70px; 
+    padding-bottom: 70px;
+    margin: 0 auto; 
 }
 
 #form_fundo {
@@ -179,11 +179,11 @@ button:hover {
     color: #f1c40f;
     border: 2px solid #000000;
     transition: all 0.3s ease;
-    font-size: 16px; /* Diminuído de 18px para 16px */
-    padding: 8px 16px; /* Diminuído para 8px 16px */
+    font-size: 16px; 
+    padding: 8px 16px; 
     border-radius: 50px; 
     text-align: center; 
-    width: 40%; /* Ajustado se necessário */
+    width: 40%;
 }
 
 #btn_usuarios:hover, #btn_relatorio:hover,
