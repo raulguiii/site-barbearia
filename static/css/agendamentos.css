@@ -1,57 +1,92 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif; 
     margin: 0;
     padding: 0;
-    background-image: url(''); 
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Degradê escuro */
+        url('https://img.freepik.com/fotos-gratis/ferramentas-de-salao-de-beleza-vintage-em-uma-mesa-de-madeira-em-empregos-e-conceito-de-carreira_53876-128908.jpg?t=st=1729928422~exp=1729932022~hmac=ae1d07d49b465f40059b3cbe1aea1940f2011076b15157f737f79bd936fd1d1c&w=1380') no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     color: #f4b41a; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    min-height: 100vh; 
 }
 
 h1 {
     text-align: center;
-    margin: 20px 0;
-    font-size: 2.5em;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    margin: 20px 0; /* Espaçamento maior */
+    font-size: 3em; /* Aumentando o tamanho */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Sombras mais intensas */
+    font-weight: 700; /* Font-weight mais forte */
 }
 
 table {
     width: 80%;
-    margin: 0 auto;
+    margin: 40px auto; /* Espaçamento maior para se destacar */
     border-collapse: collapse;
-    background-color: rgba(0, 0, 0, 0.7); 
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.8); /* Escurecendo a cor de fundo */
+    border-radius: 12px; /* Bordas arredondadas */
     overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra na tabela */
 }
 
 th, td {
-    padding: 30px; 
+    padding: 20px; /* Espaçamento interno reduzido */
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Linha inferior sutil */
     text-transform: uppercase; 
+    color: #ffffff; /* Cor do texto para cabeçalhos e células */
 }
 
 th {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1); /* Título da coluna mais claro */
+    font-weight: bold; /* Negrito para cabeçalhos */
 }
 
 tr:hover {
-    background-color: rgba(255, 255, 255, 0.1); 
+    background-color: rgba(255, 255, 255, 0.2); /* Cor do fundo ao passar o mouse */
+    transition: background-color 0.3s ease; /* Transição suave */
 }
 
 a {
-    display: block; 
-    width: 100px;
-    margin: 20px auto;
+    display: inline-block; /* Alinhando o link */
+    width: 120px; /* Largura do link */
+    margin: 20px auto; 
     text-align: center;
-    padding: 10px;
-    background-color: #000; 
-    color: white;
+    padding: 12px; /* Aumentando o preenchimento */
+    background-color: #f4b41a; /* Cor de fundo do botão */
+    color: #000; /* Cor do texto */
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    border-radius: 30px; /* Bordas mais arredondadas */
+    font-weight: 600; /* Font-weight mais forte */
+    transition: background-color 0.3s, transform 0.3s; /* Transições suaves */
 }
 
 a:hover {
-    background-color: #333; 
+    background-color: #e0a607; /* Cor ao passar o mouse */
+    transform: translateY(-3px); /* Efeito de movimento */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+}
+
+/* Estilização do botão "Voltar para a Home" */
+.back-home-button {
+    display: inline-block; /* Alinhando o botão */
+    width: 150px; /* Largura do botão */
+    margin: 40px auto; /* Centralizando com margem superior */
+    padding: 15px; /* Preenchimento do botão */
+    background-color: #f4b41a; /* Cor de fundo do botão */
+    color: #000; /* Cor do texto */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px; /* Bordas arredondadas */
+    font-weight: 600; /* Font-weight mais forte */
+    transition: background-color 0.3s, transform 0.3s; /* Transições suaves */
+}
+
+.back-home-button:hover {
+    background-color: #e0a607; /* Cor ao passar o mouse */
+    transform: translateY(-3px); /* Efeito de movimento */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
 }

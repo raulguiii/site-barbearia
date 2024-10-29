@@ -1,61 +1,75 @@
 body {
     text-transform: uppercase;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Fundo leve e neutro */
+    color: #333; /* Texto escuro para contraste */
+    margin: 0; /* Remove margem padrão */
+    padding: 0; /* Remove padding padrão */
 }
 
 .titulo {
     text-align: center;
-    margin-top: 20px;
+    margin: 40px 0; /* Aumenta o espaço superior e inferior */
+    font-size: 36px; /* Tamanho maior para destaque */
+    color: #f39c12; /* Cor de destaque */
 }
 
 .container {
-    width: 80%;
+    width: 90%; /* Aumenta a largura do container */
+    max-width: 1200px; /* Define uma largura máxima */
     margin: auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px; /* Aumenta o padding para mais espaço interno */
+    background: white; /* Fundo branco para contraste */
+    border-radius: 12px; /* Bordas levemente arredondadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
 }
 
 h2 {
-    margin-top: 20px;
+    margin-top: 30px; /* Aumenta o espaço superior */
+    font-size: 28px; /* Tamanho maior para destaque */
+    color: #333; /* Cor escura */
+    border-bottom: 2px solid #f1c40f; /* Linha de destaque */
+    padding-bottom: 10px; /* Espaço abaixo do título */
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    border-collapse: collapse; /* Remove espaçamento entre as células */
+    margin-bottom: 30px; /* Aumenta o espaço abaixo da tabela */
 }
 
 th, td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd;
+    padding: 15px; /* Aumenta o padding */
+    text-align: left; /* Alinhamento à esquerda */
+    border: 1px solid #ddd; /* Borda sutil */
+    transition: background-color 0.3s; /* Transição suave para hover */
 }
 
 th {
-    background-color: #f1c40f;
+    background-color: #f1c40f; /* Cor de fundo para cabeçalho */
+    color: #000; /* Texto escuro no cabeçalho */
+    font-weight: bold; /* Negrito no cabeçalho */
 }
 
 tr:hover {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Cor de fundo ao passar o mouse */
 }
 
 .btn-voltar {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #f1c40f;
-    color: #000;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    display: inline-block; /* Faz com que o botão se comporte como um bloco */
+    margin-top: 30px; /* Aumenta o espaço acima do botão */
+    padding: 15px 30px; /* Aumenta o padding do botão */
+    background-color: #f1c40f; /* Cor de fundo do botão */
+    color: #fff; /* Texto branco */
+    text-decoration: none; /* Remove o sublinhado */
+    border-radius: 25px; /* Bordas arredondadas para o botão */
+    font-weight: bold; /* Texto em negrito */
+    text-align: center; /* Centraliza o texto */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
 }
 
 .btn-voltar:hover {
-    background-color: #000;
-    color: #f1c40f;
+    background-color: #000; /* Cor de fundo ao passar o mouse */
+    color: #f1c40f; /* Cor do texto ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no botão ao passar o mouse */
 }

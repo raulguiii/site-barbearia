@@ -26,12 +26,14 @@
                         <form action="/excluirUsuario" method="post">
                             <ul>
                                 <input type="hidden" name="usuarioPexcluir" value="{{c}}">
-                                <li>NOME: {{c['nome']}}</li><br>
-                                <li>SENHA: {{c['senha']}}</li>
+                                <li class="usuario-info">
+                                    <h2>NOME: {{c['nome']}}</h2>
+                                    <h3>SENHA: {{c['senha']}}</h3>
+                                    <button type="submit" class="btn-excluir">EXCLUIR</button> <!-- Botão dentro do formulário -->
+                                </li>
                             </ul>
-                            <button type="submit">EXCLUIR</button>
                         </form>
-                        ---------------------------------------------
+                        <hr> <!-- Linha horizontal para separar os usuários -->
                     {% endfor %}
                 {% else %}
                     <h1>Não existem usuários cadastrados.</h1>

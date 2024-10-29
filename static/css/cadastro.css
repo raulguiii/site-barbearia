@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
 body {
-    background: url('') no-repeat center center fixed;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Degradê escuro */
+        url('https://images.pexels.com/photos/1570806/pexels-photo-1570806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -12,17 +14,46 @@ body {
     color: #fff;
 }
 
+.top-buttons {
+    display: flex; /* Alinha os botões horizontalmente */
+    gap: 15px; /* Espaçamento entre os botões */
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    align-items: center; /* Alinha verticalmente os botões */
+    width: 80%; /* Preenche a largura total da tela */
+    padding: 20px 30px; /* Espaçamento uniformizado em cima e embaixo */
+    position: fixed; /* Mantém a barra no topo da tela */
+    top: 0; /* Fica na parte superior */
+    z-index: 100; /* Garante que a barra fique acima de outros elementos */
+    border-radius: 0 0 10px 10px; /* Borda arredondada apenas na parte inferior */
+}
+
+.top-buttons a {
+    color: #f1c40f;
+    text-decoration: none;
+    font-size: 16px; /* Diminuído de 18px para 16px */
+    font-weight: bold;
+    padding: 8px 16px; /* Diminuído para 8px 16px */
+    border: 2px solid transparent;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.top-buttons a:hover {
+    background-color: #f1c40f;
+    color: #000;
+    border-color: #000;
+}
+
 .titulo {
     font-size: 28px;
     color: #f1c40f;
-    margin: 20px 0;
+    margin: 60px 0 40px; /* Espaço em cima e embaixo do título */
     position: relative;
     text-transform: uppercase;
     text-align: center;
 }
 
 .titulo::before {
-    /* Ícone removido */
     position: absolute;
     left: -50px;
     top: 50%;
@@ -34,7 +65,6 @@ body {
     color: #f1c40f;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
 
 .flash_alerta {
     background-color: #f39c12;
@@ -49,11 +79,14 @@ body {
 
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centraliza os itens dentro da container */
     width: 100%;
     max-width: 1200px;
-    gap: 20px;
+    gap: 20px; /* Espaço entre os itens */
     align-items: flex-start; 
+    padding-top: 70px; /* Deixa espaço para a barra de navegação fixa */
+    padding-bottom: 70px; /* Adicionado espaço na parte inferior */
+    margin: 0 auto; /* Centraliza a container na tela */
 }
 
 #form_fundo {
@@ -74,7 +107,7 @@ body {
 }
 
 #form_frente {
-    background-color: #000;
+    background-color: #191919;
     margin: 10px 0;
     text-align: center;
     border-radius: 20px;
@@ -84,27 +117,6 @@ body {
     color: #f1c40f;
     width: 94%; 
 }
-
-#btn_usuarios {
-    margin-top: 20px;
-    background-color: transparent;
-    color: #f1c40f;
-    border: 2px solid #000000;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    width: 25%; 
-    padding: 10px; 
-    border-radius: 50px; 
-    text-align: center; 
-    align-self: flex-start; 
-}
-
-#btn_usuarios:hover {
-    background-color: #f1c40f;
-    color: #000;
-}
-
-
 
 label {
     font-size: 18px;
@@ -154,7 +166,6 @@ button:hover {
     border: 2px solid #f1c40f;
 }
 
-
 .button-container {
     display: flex; 
     justify-content: space-between; 
@@ -163,20 +174,20 @@ button:hover {
     margin-top: 20px; 
 }
 
-#btn_relatorio {
-    margin-left: 10px; 
+#btn_usuarios, #btn_relatorio, .footer-buttons button {
     background-color: transparent;
     color: #f1c40f;
     border: 2px solid #000000;
     transition: all 0.3s ease;
-    font-size: 16px;
-    width: 25%;
-    padding: 10px;
-    border-radius: 50px;
-    text-align: center;
+    font-size: 16px; /* Diminuído de 18px para 16px */
+    padding: 8px 16px; /* Diminuído para 8px 16px */
+    border-radius: 50px; 
+    text-align: center; 
+    width: 40%; /* Ajustado se necessário */
 }
 
-#btn_relatorio:hover {
+#btn_usuarios:hover, #btn_relatorio:hover,
+.footer-buttons button:hover {
     background-color: #f1c40f;
     color: #000;
 }
@@ -190,21 +201,4 @@ button:hover {
     bottom: 20px; 
     left: 50%; 
     transform: translateX(-50%);
-}
-
-.footer-buttons button {
-    background-color: transparent; 
-    color: #f1c40f;
-    border: 2px solid #000000;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    width: 25%; 
-    padding: 10px; 
-    border-radius: 50px; 
-    text-align: center; 
-}
-
-.footer-buttons button:hover {
-    background-color: #f1c40f;
-    color: #000;
 }

@@ -20,6 +20,15 @@
             <p>Nenhum serviço realizado ainda.</p>
         {% endif %}
         
+        <h2>Último Serviço Realizado</h2>
+        {% if ultimo_servico %}
+            <p>Serviço: {{ ultimo_servico.servico }}</p>
+            <p>Data: {{ ultimo_servico.data }}</p>
+            <p>Barbeiro: {{ ultimo_servico.barbeiro_nome }}</p>
+        {% else %}
+            <p>Nenhum serviço realizado ainda.</p>
+        {% endif %}
+        
         <h2>Barbeiro que Mais se Candidatou</h2>
         {% if barbeiro %}
             <p>Barbeiro: {{ barbeiro.barbeiro_nome }}</p>

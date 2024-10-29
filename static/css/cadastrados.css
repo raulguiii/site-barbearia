@@ -1,58 +1,83 @@
 @charset "UTF-8";
 
 body {
-    background: url('') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    overflow: hidden;
     height: 100vh;
     margin: 0;
     font-family: 'Arial', sans-serif;
     color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+    text-align: center;
+    background: url('https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center fixed;
+    background-size: cover;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Escurecendo um pouco mais para melhor legibilidade */
+    z-index: 1;
+}
+
+body > * {
+    position: relative;
+    z-index: 2;
 }
 
 .titulo {
-    font-size: 28px;
-    color: #f1c40f;
+    font-size: 42px; /* Aumentado para mais destaque */
+    color: #f39c12; /* Alterada a cor do título para combinar melhor com o fundo */
     margin: 20px 0;
     text-transform: uppercase;
-    text-align: center;
+    letter-spacing: 3px; /* Aumenta o espaçamento entre letras */
 }
 
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Mudei para coluna para que os campos fiquem embaixo do título */
     width: 100%;
-    max-width: 1200px;
+    max-width: 600px; /* Reduzido para um design mais compacto */
     gap: 20px;
+    padding: 20px;
 }
 
 #form_fundo {
-    backdrop-filter: blur(10px);
-    opacity: 0.9;
+    backdrop-filter: blur(15px); /* Blur mais intenso para um efeito mais interessante */
+    opacity: 0.95;
     text-align: center;
     border-radius: 20px;
     font-weight: bold;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #f1c40f;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.6); /* Sombras mais marcantes */
+    padding: 40px; /* Aumentado para mais espaço interno */
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff; /* Ajuste na cor do texto para melhor contraste */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
     min-height: 400px;
     width: 100%;
 }
 
 .listaUsuarios {
     overflow-y: auto;
-    border: 1px solid #f1c40f;
-    max-height: 400px;
+    border: 1px solid #f39c12;
+    max-height: 300px; /* Mantenha a altura para não ocupar muito espaço */
     padding: 20px;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.9);
     border-radius: 10px;
+    width: 100%; /* Mantém 100% para ocupar a largura do pai */
+    max-width: 800px; /* Aumentado para maior largura */
 }
 
 .listaUsuarios ul {
@@ -62,56 +87,66 @@ body {
 }
 
 .listaUsuarios li {
-    margin-bottom: 10px;
+    margin-bottom: 20px; /* Aumentado para dar mais espaço entre os itens */
+    padding: 10px;
+    border-bottom: 1px solid #444; /* Linha separando os itens */
+    transition: background 0.3s; /* Transição suave no fundo */
+    text-align: left; /* Alinhamento à esquerda */
 }
 
-.listaUsuarios h1 {
-    font-size: 22px;
-    color: #f1c40f;
-    margin-bottom: 20px;
+.listaUsuarios li:last-child {
+    border: none; /* Remove a borda do último item */
+}
+
+.listaUsuarios .usuario-info {
+    display: flex;
+    flex-direction: column; /* Alinhamento em coluna para NOME e SENHA */
+    margin-bottom: 10px; /* Espaço abaixo do bloco de informações do usuário */
+}
+
+.listaUsuarios .usuario-info h2,
+.listaUsuarios .usuario-info h3 {
+    margin: 0; /* Remove margens para alinhar melhor */
 }
 
 button {
-    font-size: 16px;
+    font-size: 20px; /* Aumentado para melhorar a legibilidade */
     font-weight: bold;
     border-radius: 10px;
-    background-color: #f1c40f;
+    background-color: #f39c12;
     color: #000;
-    padding: 10px 20px;
+    padding: 15px 30px; /* Aumentado para mais conforto ao clicar */
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     margin-top: 10px;
 }
 
 button:hover {
     background-color: #000;
-    color: #f1c40f;
-    border: 2px solid #f1c40f;
-}
-
-h1 {
-    margin: 20px 0;
+    color: #f39c12;
+    border: 2px solid #f39c12; /* Altera a borda ao passar o mouse */
 }
 
 .flash_alerta {
-    background-color: #f39c12; 
-    color: #fff; 
-    padding: 15px; 
-    border-radius: 5px; 
+    background-color: #e67e22; /* Cor do alerta ajustada para destaque */
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
     text-align: center;
-    margin: 20px 0; 
-    font-weight: bold; 
-    position: relative; 
-    animation: fadeIn 0.5s; 
+    margin: 20px 0;
+    font-weight: bold;
+    position: relative;
+    animation: fadeIn 0.5s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fadeIn {
     from {
-        opacity: 0; 
+        opacity: 0;
     }
     to {
-        opacity: 1; 
+        opacity: 1;
     }
 }
 
@@ -119,23 +154,24 @@ h1 {
     position: absolute;
     top: 10px;
     right: 10px;
-    cursor: pointer; 
-    color: #fff; 
+    cursor: pointer;
+    color: #fff;
 }
 
 .btn-voltar {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 24px;
     text-decoration: none;
     font-size: 18px;
-    color: #000; 
-    background-color: #f1c40f; 
-    border-radius: 10px; 
+    color: #000;
+    background-color: #f39c12;
+    border-radius: 10px;
     margin-bottom: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-voltar:hover {
-    background-color: #000; 
-    color: #f1c40f; 
-    border: 2px solid #f1c40f; 
+    background-color: #000;
+    color: #f39c12;
+    border: 2px solid #f39c12;
 }
