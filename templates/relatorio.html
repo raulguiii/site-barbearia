@@ -1,44 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório</title>
-    <link rel="stylesheet" href="../static/css/relatorio.css"> <!-- Adicione seu CSS aqui -->
+    <link rel="stylesheet" href="../static/css/relatorio.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1 class="titulo">Relatório</h1>
-    <div class="container">
-        <h2>Serviço Mais Realizado</h2>
-        {% if servico %}
-            <p>Serviço: {{ servico.servico }}</p>
-            <p>Total: {{ servico.total }}</p>
-        {% else %}
-            <p>Nenhum serviço realizado ainda.</p>
-        {% endif %}
-        
-        <h2>Último Serviço Realizado</h2>
-        {% if ultimo_servico %}
-            <p>Serviço: {{ ultimo_servico.servico }}</p>
-            <p>Data: {{ ultimo_servico.data }}</p>
-            <p>Barbeiro: {{ ultimo_servico.barbeiro_nome }}</p>
-        {% else %}
-            <p>Nenhum serviço realizado ainda.</p>
-        {% endif %}
-        
-        <h2>Barbeiro que Mais se Candidatou</h2>
-        {% if barbeiro %}
-            <p>Barbeiro: {{ barbeiro.barbeiro_nome }}</p>
-            <p>Total de Candidaturas: {{ barbeiro.total }}</p>
-        {% else %}
-            <p>Nenhum barbeiro se candidatou ainda.</p>
-        {% endif %}
-        
-        <a href="/cadastro" class="btn-voltar">Voltar ao Cadastro</a>
+    <div class="relatorio-container">
+        <header class="header">
+            <h1>Relatório de Performance</h1>
+            <div class="subtitulo">Análise detalhada dos serviços e desempenho</div>
+        </header>
+
+        <section class="content">
+            <div class="card wow">
+                <h2 class="card-title"><i class="fas fa-trophy"></i> Serviço Mais Realizado</h2>
+                {% if servico %}
+                    <div class="card-info">
+                        <p><strong>Serviço:</strong> {{ servico.servico }}</p>
+                        <p><strong>Total Realizado:</strong> {{ servico.total }}</p>
+                    </div>
+                {% else %}
+                    <p class="info">Nenhum serviço realizado ainda.</p>
+                {% endif %}
+            </div>
+
+            <div class="card wow">
+                <h2 class="card-title"><i class="fas fa-calendar-day"></i> Último serviço a ser realizado</h2>
+                {% if ultimo_servico %}
+                    <div class="card-info">
+                        <p><strong>Serviço:</strong> {{ ultimo_servico.servico }}</p>
+                        <p><strong>Data:</strong> {{ ultimo_servico.data }}</p>
+                        <p><strong>Barbeiro:</strong> {{ ultimo_servico.barbeiro_nome }}</p>
+                    </div>
+                {% else %}
+                    <p class="info">Nenhum serviço realizado ainda.</p>
+                {% endif %}
+            </div>
+            
+                    
+            <div class="card wow">
+                <h2 class="card-title"><i class="fas fa-user-cog"></i> Barbeiro Mais Candidatado</h2>
+                {% if barbeiro %}
+                    <div class="card-info">
+                        <p><strong>Barbeiro:</strong> {{ barbeiro.barbeiro_nome }}</p>
+                        <p><strong>Total de Candidaturas:</strong> {{ barbeiro.total }}</p>
+                    </div>
+                {% else %}
+                    <p class="info">Nenhum barbeiro se candidatou ainda.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <footer>
+            <a href="/cadastro" class="btn-voltar">Voltar ao Cadastro</a>
+            <button onclick="location.reload()" class="btn-atualizar">Atualizar Relatório</button>
+        </footer>
     </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 
 </html>
