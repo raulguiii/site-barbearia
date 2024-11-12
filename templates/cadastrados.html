@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -10,37 +10,40 @@
 </head>
 
 <body>
-    <a href="{{ url_for('cadastro') }}" class="btn-voltar">Voltar ao cadastro</a>
-    <h1 class="titulo">BARBEIROS CADASTRADOS</h1>
+    <header>
+        <a href="{{ url_for('cadastro') }}" class="btn-voltar">Voltar ao Cadastro</a>
+    </header>
 
-    {% set mensagem = get_flashed_messages() %}
-    {% if mensagem %}
-        <div class="flash_alerta">{{ mensagem[0] }}</div>
-    {% endif %}
+    <main>
+        <section class="titulo-container">
+            <h1 class="titulo">Barbeiros Cadastrados</h1>
+            {% set mensagem = get_flashed_messages() %}
+            {% if mensagem %}
+                <div class="flash_alerta">{{ mensagem[0] }}</div>
+            {% endif %}
+        </section>
 
-    <div class="container">
-        <div id="form_fundo">
-            <div id="form_frente" class="listaUsuarios">
-                {% if usuarios %}
+        <section class="usuarios-container">
+            {% if usuarios %}
+                <div class="cards-container">
                     {% for c in usuarios %}
-                        <form action="/excluirUsuario" method="post">
-                            <ul>
+                        <div class="usuario-card">
+                            <div class="usuario-info">
+                                <h2 class="usuario-nome">{{c['nome']}}</h2>
+                                <p class="usuario-senha"><strong>Senha:</strong> {{c['senha']}}</p>
+                            </div>
+                            <form action="/excluirUsuario" method="post">
                                 <input type="hidden" name="usuarioPexcluir" value="{{c}}">
-                                <li class="usuario-info">
-                                    <h2>NOME: {{c['nome']}}</h2>
-                                    <h3>SENHA: {{c['senha']}}</h3>
-                                    <button type="submit" class="btn-excluir">EXCLUIR</button> <!-- Botão dentro do formulário -->
-                                </li>
-                            </ul>
-                        </form>
-                        <hr> <!-- Linha horizontal para separar os usuários -->
+                                <button type="submit" class="btn-excluir">Excluir</button>
+                            </form>
+                        </div>
                     {% endfor %}
-                {% else %}
-                    <h1>Não existem usuários cadastrados.</h1>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+                </div>
+            {% else %}
+                <h2 class="sem-usuarios">Não existem usuários cadastrados.</h2>
+            {% endif %}
+        </section>
+    </main>
 </body>
 
 </html>
