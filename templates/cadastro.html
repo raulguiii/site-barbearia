@@ -1,51 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>Cadastrar Barbeiro</title>
     <link rel="stylesheet" href="../static/css/cadastro.css">
 </head>
 
 <body>
-    {% set menssagem = get_flashed_messages() %}
-    {% if menssagem %}
+    {% set mensagem = get_flashed_messages() %}
+    {% if mensagem %}
         <div class="flash_alerta">
-            {{ menssagem[0] }}
+            {{ mensagem[0] }}
         </div>
     {% endif %}
 
-    <!-- Barra de navegação superior -->
-    <div class="top-buttons">
-        <button onclick="window.location.href='/cadastrados'">VER BARBEIROS CADASTRADOS</button>
-        <button onclick="window.location.href='/relatorio'">RELATÓRIO</button>
-        <button onclick="window.location.href='/home'">VOLTAR PARA HOME</button>
-        <button onclick="window.location.href='/login'">VOLTAR PARA LOGIN</button>
-    </div>
+   
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/cadastrados" class="navbar-item">Barbeiros</a>
+            <a href="/relatorio" class="navbar-item">Relatório</a>
+            <a href="/home" class="navbar-item">Home</a>
+            <a href="/login" class="navbar-item login-btn">Login</a>
+        </div>
+    </nav>
 
-    <h1 class="titulo"></h1>
+   
+    <section class="main-content">
+        <div class="form-container">
+            <div class="form-card">
+                <h2 class="form-title">Cadastro de Barbeiro</h2>
 
-    <div class="container">
-        <div id="form_fundo">
-            <h1>CADASTRAR NOVO BARBEIRO</h1>
-            <div id="form_frente">
-                <form action="/cadastrarUsuario" id="login" method="post">
-                    <label for="nome">NOME</label>
-                    <input type="text" name="nome" id="nome" required placeholder="Digite seu nome"><br><br>
-                    <label for="senha" id="senha">SENHA</label>
-                    <input type="text" name="senha" id="senha" required placeholder="Digite sua senha"><br><br>
-                    <button type="submit" id="btn_login">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>CADASTRAR
-                    </button>
+                <form action="/cadastrarUsuario" method="post">
+                    <div class="input-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" name="nome" id="nome" required placeholder="Digite o nome do barbeiro">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" id="senha" required placeholder="Escolha uma senha segura">
+                    </div>
+
+                    <button type="submit" id="btn_submit">Cadastrar</button>
                 </form>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 
 </html>
