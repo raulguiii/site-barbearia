@@ -11,7 +11,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="E2004!zo",
+        password="RodrigoMYSQL123",
         database="bd_barbearia"
     )
 
@@ -203,7 +203,7 @@ def relatorio():
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
 
-
+    
     cursor.execute("""
         SELECT servico, COUNT(*) as total
         FROM agendamentos
@@ -213,7 +213,7 @@ def relatorio():
     """)
     servico_mais_realizado = cursor.fetchone()
 
-    
+   
     cursor.execute("""
         SELECT barbeiro_nome, COUNT(*) as total
         FROM agendamentos
@@ -224,10 +224,26 @@ def relatorio():
     """)
     barbeiro_mais_candidatou = cursor.fetchone()
 
+   
+    cursor.execute("""
+        SELECT servico, data1 AS data, barbeiro_nome
+        FROM agendamentos
+        WHERE candidato = 1
+        ORDER BY data1 DESC, horario DESC
+        LIMIT 1
+    """)
+    ultimo_servico = cursor.fetchone()
+
     cursor.close()
     db.close()
 
-    return render_template('relatorio.html', servico=servico_mais_realizado, barbeiro=barbeiro_mais_candidatou)
+   
+    return render_template('relatorio.html', 
+                           servico=servico_mais_realizado, 
+                           barbeiro=barbeiro_mais_candidatou, 
+                           ultimo_servico=ultimo_servico)
+
+
 
 @app.route('/cadastro')
 def cadastro():
