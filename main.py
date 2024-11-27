@@ -254,11 +254,51 @@ def cadastro():
 def financeiro():
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM financeiro")
-    dados = cursor.fetchall()
+
+    cursor.execute("SELECT * FROM usuarios")
+    usuarios = cursor.fetchall()
+    
     cursor.close()
     db.close()
-    return render_template('financeiro.html', dados=dados)
+    return render_template('financeiro.html', usuarios=usuarios)
+
+@app.route('/atualizar_informacoes', methods=['POST'])
+def atualizar_informacoes():
+    
+    usuario_id = request.form.get('usuario_id')
+    salario = request.form.get('salario')
+    tempo_de_casa = request.form.get('tempo_de_casa')
+    horario_trabalho = request.form.get('horario_trabalho')
+
+
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    
+    cursor.execute("""
+        UPDATE usuarios
+        SET salario = %s, tempo_de_casa = %s, horario_trabalho = %s
+        WHERE id = %s
+    """, (salario, tempo_de_casa, horario_trabalho, usuario_id))
+
+    
+    db.commit()
+
+    
+    cursor.close()
+    db.close()
+
+   
+    flash('Informações atualizadas com sucesso!')
+    return redirect('/financeiro')
+
+@app.route('/pagar/<int:id>')
+def pagar(id):
+    print(f"Pagamento iniciado para o usuário com ID: {id}")
+
+    return f"Página de pagamento para o usuário com ID: {id}"
+
+
 
 if __name__ == "__main__":
     app.run(debug=True) 
