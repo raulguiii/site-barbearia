@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financeiro</title>
+    <link rel="stylesheet" href="../static/css/financeiro.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/cadastro" class="navbar-item login-btn">Voltar</a>
+        </div>
+    </nav>
+
+    <section class="main-content">
+        <h1>Bem-vindo à página Financeiro</h1>
+        <p>Aqui você poderá gerenciar informações financeiras da barbearia.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Senha</th>
+                    <th>Salário</th>
+                    <th>Tempo de Casa</th>
+                    <th>Horário de Trabalho</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.id }}</td>
+                        <td>{{ usuario.nome }}</td>
+                        <td><input type="password" value="{{ usuario.senha }}" disabled></td>
+                        <td>{{ usuario.salario }}</td>
+                        <td>{{ usuario.tempo_de_casa }} anos</td>
+                        <td>{{ usuario.horario_trabalho }}</td>
+                        <td>
+                            <a href="/pagar/{{ usuario.id }}" target="_blank">
+                                <button>Pagar</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Adicionar/Atualizar Informações</h2>
+        <form action="/atualizar_informacoes" method="POST">
+            <label for="usuario_id">ID do Usuário:</label>
+            <select name="usuario_id" id="usuario_id">
+                {% for usuario in usuarios %}
+                    <option value="{{ usuario.id }}">{{ usuario.nome }} (ID: {{ usuario.id }})</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="salario">Salário:</label>
+            <input type="number" name="salario" id="salario" required><br>
+
+            <label for="tempo_de_casa">Tempo de Casa (anos):</label>
+            <input type="number" name="tempo_de_casa" id="tempo_de_casa" required><br>
+
+            <label for="horario_trabalho">Horário de Trabalho:</label>
+            <input type="text" name="horario_trabalho" id="horario_trabalho" required><br>
+
+            <button type="submit">Atualizar Informações</button>
+        </form>
+    </section>
+</body>
+
+</html>
 
