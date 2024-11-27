@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, flash
+from flask import Flask, render_template, redirect, request, flash, jsonify
 import mysql.connector
 import ast
 
@@ -11,7 +11,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="RodrigoMYSQL123",
+        password="raulgui123!",
         database="bd_barbearia"
     )
 
@@ -239,9 +239,9 @@ def relatorio():
 
    
     return render_template('relatorio.html', 
-                           servico=servico_mais_realizado, 
-                           barbeiro=barbeiro_mais_candidatou, 
-                           ultimo_servico=ultimo_servico)
+        servico=servico_mais_realizado, 
+        barbeiro=barbeiro_mais_candidatou, 
+        ultimo_servico=ultimo_servico)
 
 
 
@@ -249,5 +249,16 @@ def relatorio():
 def cadastro():
     return render_template('cadastro.html')
 
+
+@app.route('/financeiro')
+def financeiro():
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM financeiro")
+    dados = cursor.fetchall()
+    cursor.close()
+    db.close()
+    return render_template('financeiro.html', dados=dados)
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True) 
