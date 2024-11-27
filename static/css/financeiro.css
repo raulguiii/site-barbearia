@@ -1,0 +1,175 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: #343a40;
+    padding: 15px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar-item {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.navbar-item:hover {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+.main-content {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 30px;
+}
+
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #343a40;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td input[type="password"] {
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button:active {
+    background-color: #1e7e34;
+}
+
+
+form input[type="number"] {
+    appearance: none; 
+    -webkit-appearance: none; 
+    margin: 0;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="number"]::-webkit-outer-spin-button, 
+form input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; 
+    margin: 0;
+}
+
+input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+button.save-btn {
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button.save-btn:hover {
+    background-color: #0056b3;
+}
+
+button.save-btn:active {
+    background-color: #004085;
+}
+
+form .input-container {
+    margin-bottom: 20px;
+}
+
+.update-section {
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.update-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 22px;
+}
+
+.update-section .input-container {
+    margin-bottom: 15px;
+}
