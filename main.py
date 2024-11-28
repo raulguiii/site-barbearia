@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, request, flash, jsonify
 import mysql.connector
 import ast
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'BARBEARIA'
@@ -203,47 +205,33 @@ def relatorio():
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
 
-    
+    # Dados do gráfico de serviços
     cursor.execute("""
         SELECT servico, COUNT(*) as total
         FROM agendamentos
         GROUP BY servico
         ORDER BY total DESC
-        LIMIT 1
     """)
-    servico_mais_realizado = cursor.fetchone()
+    servico_data = cursor.fetchall()
 
-   
+    # Dados do gráfico de barbeiros
     cursor.execute("""
         SELECT barbeiro_nome, COUNT(*) as total
         FROM agendamentos
         WHERE candidato = 1
         GROUP BY barbeiro_nome
         ORDER BY total DESC
-        LIMIT 1
     """)
-    barbeiro_mais_candidatou = cursor.fetchone()
-
-   
-    cursor.execute("""
-        SELECT servico, data1 AS data, barbeiro_nome
-        FROM agendamentos
-        WHERE candidato = 1
-        ORDER BY data1 DESC, horario DESC
-        LIMIT 1
-    """)
-    ultimo_servico = cursor.fetchone()
+    barbeiro_data = cursor.fetchall()
 
     cursor.close()
     db.close()
 
-   
-    return render_template('relatorio.html', 
-        servico=servico_mais_realizado, 
-        barbeiro=barbeiro_mais_candidatou, 
-        ultimo_servico=ultimo_servico)
-
-
+    return render_template(
+        'relatorio.html',
+        servico_data=servico_data,
+        barbeiro_data=barbeiro_data
+    )
 
 @app.route('/cadastro')
 def cadastro():
@@ -264,40 +252,66 @@ def financeiro():
 
 @app.route('/atualizar_informacoes', methods=['POST'])
 def atualizar_informacoes():
-    
     usuario_id = request.form.get('usuario_id')
     salario = request.form.get('salario')
     tempo_de_casa = request.form.get('tempo_de_casa')
     horario_trabalho = request.form.get('horario_trabalho')
-
+    chave_pix = request.form.get('chave_pix')  
 
     db = get_db_connection()
     cursor = db.cursor()
 
-    
     cursor.execute("""
         UPDATE usuarios
-        SET salario = %s, tempo_de_casa = %s, horario_trabalho = %s
+        SET salario = %s, tempo_de_casa = %s, horario_trabalho = %s, chave_pix = %s
         WHERE id = %s
-    """, (salario, tempo_de_casa, horario_trabalho, usuario_id))
+    """, (salario, tempo_de_casa, horario_trabalho, chave_pix, usuario_id))
 
-    
     db.commit()
-
-    
     cursor.close()
     db.close()
 
-   
     flash('Informações atualizadas com sucesso!')
     return redirect('/financeiro')
 
-@app.route('/pagar/<int:id>')
+
+UPLOAD_FOLDER = 'uploads/comprovantes'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/pagar/<int:id>', methods=['GET', 'POST'])
 def pagar(id):
-    print(f"Pagamento iniciado para o usuário com ID: {id}")
+    if request.method == 'POST':
+        if 'comprovante' not in request.files:
+            flash('Nenhum arquivo enviado.')
+            return redirect(request.url)
 
-    return f"Página de pagamento para o usuário com ID: {id}"
+        file = request.files['comprovante']
+        if file.filename == '':
+            flash('Nenhum arquivo selecionado.')
+            return redirect(request.url)
 
+        if file:
+            filename = secure_filename(file.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(file_path)
+
+            # Atualiza o banco de dados com o status "Pago" e o caminho do comprovante
+            db = get_db_connection()
+            cursor = db.cursor()
+            cursor.execute("""
+                UPDATE usuarios
+                SET pagamento_realizado = 1, comprovante = %s
+                WHERE id = %s
+            """, (file_path, id))
+            db.commit()
+            cursor.close()
+            db.close()
+
+            flash('Pagamento registrado com sucesso!')
+            return redirect('/financeiro')
+
+    return render_template('pagar.html', usuario_id=id)
 
 
 if __name__ == "__main__":
