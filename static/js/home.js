@@ -1,102 +1,97 @@
-
-document.querySelector('.fa-user').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.location.href = '/login';
-});
-
-
-// Menu hamburguer
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav-links');
-const navLinks = document.querySelectorAll('.nav-links li');
-
-burger.addEventListener('click', () => {
-    nav.classList.toggle('nav-active');
-    
-
-    navLinks.forEach((link, index) => {
-        if (link.style.animation) {
-            link.style.animation = '';
-        } else {
-            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-        }
-    });
-
-    burger.classList.toggle('toggle');
-});
-
-
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    header.classList.toggle('sticky', window.scrollY > 0);
-});
-
-
-document.querySelector('#schedule-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.querySelector('#name').value.trim();
-    const phone = document.querySelector('#phone').value.trim();
-    const service = document.querySelector('#service').value;
-    const date = document.querySelector('#date').value;
-    const time = document.querySelector('#time').value;
-    const message = document.querySelector('.form-message');
-    const today = new Date().toISOString().split('T')[0];
-
-    
-    const isFullNameValid = (name) => {
-        const nameParts = name.split(' ');
-        return nameParts.length >= 2 && nameParts.every(part => /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/.test(part));
-    };
-
-   
-    if (name === "" || phone === "" || date === "" || time === "") {
-        showMessage("Por favor, preencha todos os campos.", "red", message);
-    } else if (!isFullNameValid(name)) {
-        showMessage("Por favor, insira o nome completo (pelo menos nome e sobrenome).", "red", message);
-    } else if (phone.length !== 11) {
-        showMessage("O número de telefone deve ter 11 dígitos.", "red", message);
-    } else if (date < today) {
-        showMessage("A data do agendamento deve ser a de hoje ou futura.", "red", message);
-    } else {
-        showMessage("Agendamento enviado com sucesso!", "green", message);
-        sendAgendamento(name, phone, service, date, time, message);
+function enableEditing(cell) {
+    if (!cell.hasAttribute("data-edited")) {
+        let originalValue = cell.innerHTML;
+        cell.innerHTML = `<input type="text" value="${originalValue}" />`;
+        cell.setAttribute("data-edited", "true");
     }
-});
-
-
-function showMessage(text, color, element) {
-    element.textContent = text;
-    element.style.color = color;
 }
 
+function saveEdits() {
+    const editedCells = document.querySelectorAll("td[data-edited='true']");
+    const updatedData = [];
 
-function sendAgendamento(name, phone, service, date, time, messageElement) {
-    const formData = new URLSearchParams();
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('service', service);
-    formData.append('date', date);
-    formData.append('time', time);
+    editedCells.forEach(cell => {
+        const input = cell.querySelector("input");
+        const newValue = input.value;
+        cell.innerHTML = newValue;
+        cell.removeAttribute("data-edited");
 
-    fetch('/agendar', {
-        method: 'POST',
-        body: formData,
+        const row = cell.closest("tr");
+        const id = row.querySelector("td").innerText;
+
+        updatedData.push({
+            id: id,
+            column: cell.cellIndex, 
+            value: newValue
+        });
+    });
+
+    fetch("/editar_financeiro", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ updatedData })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao realizar o agendamento');
-        }
-        return response.text();
-    })
+    .then(response => response.json())
     .then(data => {
-        console.log(data); 
-       
-        document.querySelector('#schedule-form').reset();
-        
+        console.log('Dados atualizados:', data);
+        alert('Dados atualizados com sucesso!');
     })
     .catch(error => {
-        console.error('Erro:', error);
-        showMessage("Ocorreu um erro ao enviar o agendamento. Tente novamente.", "red", messageElement);
+        console.error('Erro ao salvar:', error);
+        alert('Erro ao salvar os dados!');
+    });
+}
+
+function addNewRow() {
+    const table = document.querySelector(".finance-table tbody");
+    const newRow = document.createElement("tr");
+
+    newRow.innerHTML = `
+        <td></td>
+        <td><input type="text" placeholder="Nome do Funcionário" /></td>
+        <td><input type="text" placeholder="Horário de Trabalho" /></td>
+        <td><input type="text" placeholder="Salário" /></td>
+        <td><input type="text" placeholder="Status" /></td>
+        <td><button onclick="saveNewRow(this)">Salvar</button></td>
+    `;
+    table.appendChild(newRow);
+}
+
+function saveNewRow(button) {
+    const row = button.closest("tr");
+    const inputs = row.querySelectorAll("input");
+
+    const newData = {
+        nome_funcionario: inputs[0].value,
+        horario_trabalho: inputs[1].value,
+        salario: inputs[2].value,
+        status_pagamento: inputs[3].value
+    };
+
+    fetch("/adicionar_financeiro", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newData)  
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "sucesso") {
+            row.querySelector("td").innerText = data.id;  
+            inputs.forEach(input => {
+                input.disabled = true;  
+            });
+            button.innerText = "Salvo";
+            button.setAttribute("disabled", true); 
+        } else {
+            alert('Erro ao adicionar a linha: ' + data.message);  
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao adicionar:', error);
+        alert('Erro ao adicionar a linha!');
     });
 }
