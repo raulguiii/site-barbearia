@@ -8,26 +8,26 @@ https://trello.com/b/J6BtshPV/projeto-da-barbearia
 
 <h1>MySQl Workbench:<h1>
 
-CREATE DATABASE bd_barbearia;
+<p>CREATE DATABASE bd_barbearia;</p>
 
-USE bd_barbearia;
+<p>USE bd_barbearia;</p>
 
-CREATE TABLE usuarios (
+<p>CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     senha VARCHAR(255) NOT NULL
-);
+);</p>
 
-SELECT * FROM usuarios;
+<p>SELECT * FROM usuarios;</p>
 
-CREATE TABLE agendamentos (
+<p>CREATE TABLE agendamentos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     servico VARCHAR(255) NOT NULL,
     data1 DATE NOT NULL,
     horario TIME NOT NULL
-);
+);</p>
 
 SELECT * FROM agendamentos;
 
@@ -55,5 +55,5 @@ ALTER TABLE usuarios ADD chave_pix VARCHAR(255);
 
 ALTER TABLE usuarios
 ADD COLUMN pagamento_realizado BOOLEAN DEFAULT 0,
-ADD COLUMN comprovante VARCHAR(255);
+ADD COLUMN comprovante VARCHAR(255);</p>
 
