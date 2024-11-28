@@ -29,6 +29,7 @@
                     <th>Salário</th>
                     <th>Tempo de Casa</th>
                     <th>Horário de Trabalho</th>
+                    <th>Chave PIX</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -41,16 +42,21 @@
                         <td>{{ usuario.salario }}</td>
                         <td>{{ usuario.tempo_de_casa }} anos</td>
                         <td>{{ usuario.horario_trabalho }}</td>
+                        <td>{{ usuario.chave_pix }}</td>
                         <td>
-                            <a href="/pagar/{{ usuario.id }}" target="_blank">
-                                <button>Pagar</button>
-                            </a>
+                            {% if usuario.pagamento_realizado %}
+                                <button disabled>Pago</button>
+                            {% else %}
+                                <a href="/pagar/{{ usuario.id }}" target="_blank">
+                                    <button>Pagar</button>
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-
+        
         <h2>Adicionar/Atualizar Informações</h2>
         <form action="/atualizar_informacoes" method="POST">
             <label for="usuario_id">ID do Usuário:</label>
@@ -59,20 +65,22 @@
                     <option value="{{ usuario.id }}">{{ usuario.nome }} (ID: {{ usuario.id }})</option>
                 {% endfor %}
             </select><br>
-
+        
             <label for="salario">Salário:</label>
             <input type="number" name="salario" id="salario" required><br>
-
+        
             <label for="tempo_de_casa">Tempo de Casa (anos):</label>
             <input type="number" name="tempo_de_casa" id="tempo_de_casa" required><br>
-
+        
             <label for="horario_trabalho">Horário de Trabalho:</label>
             <input type="text" name="horario_trabalho" id="horario_trabalho" required><br>
-
+        
+            <label for="chave_pix">Chave Pix:</label>
+            <input type="text" name="chave_pix" id="chave_pix" required><br>
+        
             <button type="submit">Atualizar Informações</button>
-        </form>
+        </form>        
     </section>
 </body>
 
 </html>
-
