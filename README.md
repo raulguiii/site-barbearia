@@ -6,7 +6,7 @@
 https://trello.com/b/J6BtshPV/projeto-da-barbearia
 
 
-MySQl Workbench:
+<h2>MySQl Workbench:</h2>
 
 CREATE DATABASE bd_barbearia;
 
