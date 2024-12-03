@@ -5,71 +5,224 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagar</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff; /* Fundo branco */
             margin: 0;
             padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            color: #010101;
+            overflow: hidden;
         }
 
         .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
             width: 100%;
+            position: relative;
+            border: 1px solid #ddd;
         }
 
         h1 {
-            color: #333;
+            font-size: 28px;
+            font-weight: 700;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #333;
+            letter-spacing: 1px;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
         }
 
         label {
             display: block;
-            margin: 10px 0 5px;
-            color: #555;
-            font-weight: bold;
+            font-size: 16px;
+            margin: 15px 0 10px;
+            font-weight: 500;
+            color: #212529;
         }
 
         input[type="file"] {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            background: #f8f8f8;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 12px 5px;
+            font-size: 14px;
             width: 100%;
+            margin-bottom: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        input[type="file"]::file-selector-button {
+            background: linear-gradient(135deg, #4CAF50, #388e3c); 
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #43a047, #388e3c);
+        }
+
+        input[type="file"]:focus {
+            border: 2px solid #4CAF50;
+            outline: none;
         }
 
         button {
-            background-color: #4CAF50;
-            color: white;
+            background: linear-gradient(135deg, #4CAF50, #43a047);
+            color: #fff;
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
+            border-radius: 12px;
+            padding: 14px 25px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(72, 239, 108, 0.4);
+            transition: all 0.3s ease;
         }
 
         button:hover {
-            background-color: #45a049;
+            background: linear-gradient(135deg, #43a047, #388e3c);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(72, 239, 108, 0.5);
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 5px 15px rgba(72, 239, 108, 0.3);
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            height: 10px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #4CAF50;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        .status-message {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .status-message.error {
+            color: #e74c3c;
+        }
+
+        .floating-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 36px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .floating-icon:hover {
+            transform: scale(1.1) rotate(360deg);
+            background-color: #388e3c;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            button {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Enviar Comprovante de Pagamento</h1>
+        <h1>Enviar Comprovante</h1>
         <form action="/pagar/{{ usuario_id }}" method="POST" enctype="multipart/form-data">
             <label for="comprovante">Selecione o comprovante:</label>
-            <input type="file" name="comprovante" id="comprovante" required>
-            <button type="submit">Enviar</button>
+            <input type="file" name="comprovante" id="comprovante" required onchange="enableSubmit()">
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <button type="submit" id="submitBtn" disabled>Enviar</button>
+            <div class="status-message" id="statusMessage"></div>
         </form>
     </div>
+
+    <div class="floating-icon" onclick="window.location.href='https://wa.me/5511915551648'">
+        💬
+    </div>
+
+    <script>
+        function enableSubmit() {
+            const fileInput = document.getElementById('comprovante');
+            const submitBtn = document.getElementById('submitBtn');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const statusMessage = document.getElementById('statusMessage');
+
+            if (fileInput.files.length > 0) {
+                submitBtn.disabled = false;
+                progressContainer.style.display = 'block';
+                progressBar.style.width = '0%';
+                statusMessage.textContent = 'Pronto para enviar!';
+            } else {
+                submitBtn.disabled = true;
+                progressContainer.style.display = 'none';
+            }
+        }
+
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const progressBar = document.getElementById('progressBar');
+            const statusMessage = document.getElementById('statusMessage');
+
+            progressBar.style.width = '50%';
+            statusMessage.textContent = 'Enviando...';
+
+            setTimeout(function() {
+                progressBar.style.width = '100%';
+                statusMessage.textContent = 'Comprovante Enviado com Sucesso!';
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
