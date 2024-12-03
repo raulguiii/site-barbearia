@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard - Performance</title>
     <link rel="stylesheet" href="../static/css/relatorio.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../static/js/relatorio.js" defer></script>
 </head>
@@ -15,23 +14,21 @@
     <div class="dashboard-container">
         <header class="header">
             <h1>Dashboard de Performance</h1>
-            <p class="subtitulo">Análise detalhada em formato visual</p>
+            <p class="subtitulo">Análise e relatórios detalhados</p>
         </header>
 
-        <section class="content">
-            <div class="chart-container">
+        <section class="charts">
+            <div class="chart-card">
                 <canvas id="servicoChart" data-servico-data='{{ servico_data | tojson }}'></canvas>
             </div>
-
-            <div class="chart-container">
+            <div class="chart-card">
                 <canvas id="barbeiroChart" data-barbeiro-data='{{ barbeiro_data | tojson }}'></canvas>
             </div>
         </section>
-        
 
         <footer>
-            <a href="/cadastro" class="btn-voltar">Voltar ao Cadastro</a>
-            <button onclick="location.reload()" class="btn-atualizar">Atualizar Dashboard</button>
+            <a href="/cadastro" class="btn btn-voltar">Voltar</a>
+            <button onclick="location.reload()" class="btn btn-atualizar">Atualizar</button>
         </footer>
     </div>
 </body>
