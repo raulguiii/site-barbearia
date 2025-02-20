@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque</title>
+    <link rel="stylesheet" href="../static/css/estoque.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Estoque</div>
+        <div class="links">
+            <a href="/adm">Início</a>
+            <a href="/relatorio">Relatório</a>
+            <a href="/estoque">Estoque</a>
+            <a href="/financeiro">Financeiro</a>
+            <a href="/logout">Sair</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Gerenciamento de Estoque</h2>
+
+        <form action="/adicionar_produto" method="post" class="form-produto">
+            <input type="text" name="nome" placeholder="Nome do Produto" required>
+            <input type="number" name="quantidade" placeholder="Quantidade" required>
+            <input type="number" step="0.01" name="preco" placeholder="Preço" required>
+            <button type="submit">Adicionar Produto</button>
+        </form>
+
+        <h3>Produtos Cadastrados</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.id }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                    <td>R$ {{ produto.preco }}</td>
+                    <td>
+                        <form action="/editar_produto" method="post" class="form-editar" style="display:inline;">
+                            <input type="hidden" name="id" value="{{ produto.id }}">
+                            <input type="text" name="nome" value="{{ produto.nome }}" required>
+                            <input type="number" name="quantidade" value="{{ produto.quantidade }}" required>
+                            <input type="number" step="0.01" name="preco" value="{{ produto.preco }}" required>
+                            <button type="submit"><i class="fas fa-edit"></i> Editar</button>
+                        </form>
+                        <form action="/excluir_produto" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="{{ produto.id }}">
+                            <button type="submit" class="btn-excluir"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../static/js/estoque.js"></script>
+
+</body>
+</html>
