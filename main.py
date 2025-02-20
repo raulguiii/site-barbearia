@@ -13,7 +13,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="raulgui123!",
+        password="RodrigoMYSQL123",
         database="bd_barbearia"
     )
 
@@ -312,6 +312,68 @@ def pagar(id):
             return redirect('/financeiro')
 
     return render_template('pagar.html', usuario_id=id)
+
+@app.route('/estoque')
+def estoque():
+    if not logado:
+        return redirect('/')
+
+    db = get_db_connection()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM produtos")
+    produtos = cursor.fetchall()
+    cursor.close()
+    db.close()
+
+    return render_template('estoque.html', produtos=produtos)
+
+
+@app.route('/adicionar_produto', methods=['POST'])
+def adicionar_produto():
+    nome = request.form.get('nome')
+    quantidade = request.form.get('quantidade')
+    preco = request.form.get('preco')
+
+    db = get_db_connection()
+    cursor = db.cursor()
+    cursor.execute("INSERT INTO produtos (nome, quantidade, preco) VALUES (%s, %s, %s)", (nome, quantidade, preco))
+    db.commit()
+    cursor.close()
+    db.close()
+
+    return redirect('/estoque')
+
+
+@app.route('/editar_produto', methods=['POST'])
+def editar_produto():
+    produto_id = request.form.get('id')
+    nome = request.form.get('nome')
+    quantidade = request.form.get('quantidade')
+    preco = request.form.get('preco')
+
+    db = get_db_connection()
+    cursor = db.cursor()
+    cursor.execute("UPDATE produtos SET nome=%s, quantidade=%s, preco=%s WHERE id=%s", (nome, quantidade, preco, produto_id))
+    db.commit()
+    cursor.close()
+    db.close()
+
+    return redirect('/estoque')
+
+
+@app.route('/excluir_produto', methods=['POST'])
+def excluir_produto():
+    produto_id = request.form.get('id')
+
+    db = get_db_connection()
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM produtos WHERE id=%s", (produto_id,))
+    db.commit()
+    cursor.close()
+    db.close()
+
+    return redirect('/estoque')
+
 
 
 if __name__ == "__main__":
