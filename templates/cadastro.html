@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Barbeiro</title>
     <link rel="stylesheet" href="../static/css/cadastro.css">
 </head>
-
 <body>
+
     {% set mensagem = get_flashed_messages() %}
     {% if mensagem %}
         <div class="flash_alerta">
@@ -17,18 +15,17 @@
         </div>
     {% endif %}
 
-   
     <nav class="navbar">
         <div class="navbar-container">
             <a href="/cadastrados" class="navbar-item">Barbeiros</a>
             <a href="/relatorio" class="navbar-item">Relatório</a>
+            <a href="/estoque" class="navbar-item">Estoque</a>
             <a href="/financeiro" class="navbar-item">Financeiro</a> 
             <a href="/home" class="navbar-item">Home</a>
             <a href="/login" class="navbar-item login-btn">Login</a>
         </div>          
     </nav>
-    
- 
+
     <section class="main-content">
         <div class="form-container">
             <div class="form-card">
@@ -50,6 +47,6 @@
             </div>
         </div>
     </section>
-</body>
 
+</body>
 </html>
