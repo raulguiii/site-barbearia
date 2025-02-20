@@ -57,3 +57,11 @@ ALTER TABLE usuarios
 ADD COLUMN pagamento_realizado BOOLEAN DEFAULT 0,
 ADD COLUMN comprovante VARCHAR(255);
 
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    quantidade INT NOT NULL,
+    preco DECIMAL(10,2) NOT NULL
+);
+
+SELECT * FROM produtos;
