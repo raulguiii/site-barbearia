@@ -16,6 +16,7 @@
             <th>Data</th>
             <th>Horário</th>
             <th>Candidatar-se</th>
+            <th>Corte realizado</th>
         </tr>
         {% for agendamento in agendamentos %}
         <tr>
@@ -31,6 +32,13 @@
                     <a href="/candidatar/{{ agendamento.id }}">
                         <i class="fas fa-times-circle" style="color: red;"></i>
                     </a>
+                {% endif %}
+            </td>
+            <td>
+                {% if agendamento.candidato == 1 %}
+                    <a href="/deletar/{{ agendamento.id }}" onclick="return confirm('Tem certeza que este corte já foi realizado?');">Corte já realizado!</a>
+                {% else %}
+                    <!-- Mantém a célula vazia -->
                 {% endif %}
             </td>            
         </tr>
