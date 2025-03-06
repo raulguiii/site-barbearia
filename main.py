@@ -13,7 +13,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="RodrigoMYSQL123",
+        password="raulgui123!",
         database="bd_barbearia"
     )
 
@@ -182,6 +182,29 @@ def candidatar(agendamento_id):
     db.close()
 
     flash('Você se candidatou com sucesso!')
+    return redirect('/agendamentos')
+
+@app.route('/deletar/<int:agendamento_id>', methods=['GET'])
+def deletar_agendamento(agendamento_id):
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    # Verifica se o agendamento tem um barbeiro candidato
+    cursor.execute("SELECT candidato FROM agendamentos WHERE id = %s", (agendamento_id,))
+    resultado = cursor.fetchone()
+
+    if resultado and resultado[0] == 1:
+        try:
+            cursor.execute("DELETE FROM agendamentos WHERE id = %s", (agendamento_id,))
+            db.commit()
+            flash('Agendamento deletado com sucesso!')
+        except mysql.connector.Error as err:
+            flash(f'Erro ao deletar o agendamento: {err}')
+    else:
+        flash('Não é possível excluir um agendamento sem um barbeiro candidato.')
+
+    cursor.close()
+    db.close()
     return redirect('/agendamentos')
 
 @app.route('/cadastrados')
