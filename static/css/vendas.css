@@ -176,3 +176,23 @@ footer .social-links li a:hover {
 .delete-btn:focus {
     outline: none;
 }
+
+.filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+.filtros input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 250px;
+    transition: 0.3s;
+}
+.filtros input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    outline: none;
+}

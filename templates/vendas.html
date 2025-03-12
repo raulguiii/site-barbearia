@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendas de Produtos - Barbearia do Seu Zé</title>
     <link rel="stylesheet" href="../static/css/vendas.css">
+    <script>
+        function filtrarTabela() {
+            let nomeFiltro = document.getElementById("filtroNome").value.toLowerCase();
+            let entregaFiltro = document.getElementById("filtroEntrega").value.toLowerCase();
+            let produtoFiltro = document.getElementById("filtroProduto").value.toLowerCase();
+            let linhas = document.querySelectorAll("tbody tr");
+
+            linhas.forEach(linha => {
+                let nome = linha.cells[1].textContent.toLowerCase();
+                let entrega = linha.cells[3].textContent.toLowerCase();
+                let produto = linha.cells[4].textContent.toLowerCase();
+
+                if ((nome.includes(nomeFiltro) || nomeFiltro === "") &&
+                    (entrega.includes(entregaFiltro) || entregaFiltro === "") &&
+                    (produto.includes(produtoFiltro) || produtoFiltro === "")) {
+                    linha.style.display = "";
+                } else {
+                    linha.style.display = "none";
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -21,6 +43,11 @@
     <section class="vendas-section">
         <div class="container">
             <h2>Vendas de Produtos</h2>
+            <div class="filtros">
+                <input type="text" id="filtroNome" placeholder="🔍 Filtrar por Nome" onkeyup="filtrarTabela()">
+                <input type="text" id="filtroEntrega" placeholder="🚚 Filtrar por Método de Entrega" onkeyup="filtrarTabela()">
+                <input type="text" id="filtroProduto" placeholder="📦 Filtrar por Produto" onkeyup="filtrarTabela()">
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -30,7 +57,7 @@
                         <th>Método de Entrega</th>
                         <th>Produto</th>
                         <th>Data da Compra</th>
-                        <th>Parecer da entrega/retirada</th> <!-- Coluna de exclusão -->
+                        <th>Parecer da entrega/retirada</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +70,6 @@
                             <td>{{ venda[4] }}</td>
                             <td>{{ venda[5] }}</td>
                             <td>
-                                <!-- Botão de Exclusão -->
                                 <form action="/delete_venda/{{ venda[0] }}" method="POST">
                                     <button type="submit" class="delete-btn">Não Realizada</button>
                                 </form>
