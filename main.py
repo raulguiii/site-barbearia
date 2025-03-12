@@ -397,6 +397,82 @@ def excluir_produto():
 
     return redirect('/estoque')
 
+@app.route('/comprar', methods=['POST'])
+def comprar():
+    nome = request.form.get('name')
+    endereco = request.form.get('address')
+    metodo_entrega = request.form.get('delivery-method')
+    produto = request.form.get('product')
+
+    # Verifica se todos os campos foram preenchidos
+    if not nome or not endereco or not metodo_entrega or not produto:
+        flash('Por favor, preencha todos os campos!')
+        return redirect('/')
+
+    try:
+        # Conecta ao banco de dados
+        db = get_db_connection()
+        cursor = db.cursor()
+        
+        # Insere os dados na tabela vendas_produtos
+        cursor.execute(
+            "INSERT INTO vendas_produtos (nome, endereco, metodo_entrega, produto) VALUES (%s, %s, %s, %s)",
+            (nome, endereco, metodo_entrega, produto)
+        )
+        db.commit()
+        flash('Compra realizada com sucesso!')
+
+    except mysql.connector.Error as err:
+        print(f"Erro ao inserir no banco de dados: {err}")
+        flash(f'Erro ao realizar a compra: {err}')
+
+    finally:
+        cursor.close()
+        db.close()
+
+    return redirect('/')
+
+@app.route('/vendas', methods=['GET'])
+def vendas():
+    # Conectar ao banco de dados
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    try:
+        # Buscar todos os registros de vendas
+        cursor.execute("SELECT * FROM vendas_produtos")
+        vendas = cursor.fetchall()
+    except mysql.connector.Error as err:
+        print(f"Erro ao buscar dados do banco: {err}")
+        vendas = []
+
+    finally:
+        cursor.close()
+        db.close()
+
+    return render_template('vendas.html', vendas=vendas)
+
+@app.route('/delete_venda/<int:id>', methods=['POST'])
+def delete_venda(id):
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    try:
+        # Deletar a venda do banco de dados
+        cursor.execute("DELETE FROM vendas_produtos WHERE id = %s", (id,))
+        db.commit()
+        flash('Venda excluída com sucesso!')
+
+    except mysql.connector.Error as err:
+        print(f"Erro ao excluir no banco de dados: {err}")
+        flash(f'Erro ao excluir a venda: {err}')
+
+    finally:
+        cursor.close()
+        db.close()
+
+    return redirect('/vendas')
+
 
 
 if __name__ == "__main__":

@@ -15,6 +15,14 @@ body {
     line-height: 1.6;
 }
 
+select {
+    width: 100%; /* Faz o select ocupar toda a largura disponível */
+    padding: 10px; /* Adiciona um pouco de espaço dentro do campo */
+    font-size: 16px; /* Define o tamanho da fonte dentro do select */
+    border: 1px solid #ccc; /* Borda suave */
+    border-radius: 5px; /* Borda arredondada */
+    box-sizing: border-box; /* Garante que o padding não afete a largura */
+}
 
 .container {
     max-width: 1200px;

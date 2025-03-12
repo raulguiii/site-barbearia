@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbearia do Seu Zé </title>
+    <title>Barbearia do Seu Zé</title>
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="icon" type="image/ x-icon" href="pg?ex=66da32f1&is=66d8e171&hm=6e6b68ecd0d46fc4faad257d51511563414d7318db4ce2b29314e732dc6ae0be&">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@500;900&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
                     <li><a href="#services">Serviços</a></li>
                     <li><a href="#about">Sobre Nós</a></li>
                     <li><a href="#schedule">Agendar Corte</a></li>
+                    <li><a href="#products">Comprar Produtos</a></li>  <!-- Link para a nova seção -->
                     <li><a href="/login"><i class="fa-solid fa-user"></i></a></li>	
                 </ul>
                 <div class="burger">
@@ -68,15 +69,6 @@
             <div class="about-content">
                 <p>Na Barbearia do Seu Zé, combinamos tradição e modernidade para oferecer uma experiência única aos nossos clientes. Nosso espaço foi projetado para proporcionar conforto e estilo, com barbeiros altamente qualificados prontos para transformar sua aparência.</p>
 
-                <style>
-                    img {
-                        width: auto;      /* Ajuste a largura conforme necessário */
-                        height: auto;    /* Mantém a proporção */
-                        max-width: 500px;/* Largura máxima */
-                        max-height: 500px; /* Altura máxima */
-                    }
-                </style>
-                
                 <img src="static/img/fachada.png" alt="Barbearia do Seu Zé">
             </div>
         </div>
@@ -109,13 +101,44 @@
                 <button type="submit">Agendar</button>
                 <p class="form-message"></p>
             </form>
-            
+        </div>
+    </section>
 
-            
+    <!-- Nova seção para comprar produtos -->
+    <section id="products" class="contact-section">
+        <div class="container">
+            <h2>Comprar Produtos</h2>
+            <p>Adquira os produtos que usamos e recomendamos para cuidados com seu visual.</p>
+            <form class="contact-form" id="products-form" method="post" action="/comprar">
+                <label for="name">Nome Completo:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="delivery-method">Método de Entrega:</label>
+                <select id="delivery-method" name="delivery-method" required>
+                    <option value="retirada">Retirada</option>
+                    <option value="entrega">Entrega a Domicílio</option>
+                </select>
+
+                <label for="address">Endereço:</label>
+                <input type="text" id="address" name="address" required>               
+                
+                <label for="product">Produto:</label>
+                <select id="product" name="product" required>
+                    <option value="gel">Gel</option>
+                    <option value="pomada">Pomada</option>
+                    <option value="shampoo">Shampoo</option>
+                    <option value="condicionador">Condicionador</option>
+                    <option value="escova">Escova</option>
+                </select>
+                
+                <p>⠀⠀⠀⠀</p>
+
+                <button type="submit">Comprar</button>
+                <p class="form-message"></p>
+            </form>
             
         </div>
     </section>
-    
 
     <footer>
         <div class="container">
