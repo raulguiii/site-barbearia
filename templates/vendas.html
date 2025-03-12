@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendas de Produtos - Barbearia do Seu Zé</title>
+    <link rel="stylesheet" href="../static/css/vendas.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Vendas realizadas</div>
+        <div class="links">
+            <a href="/adm">Início</a>
+            <a href="/relatorio">Relatório</a>
+            <a href="/estoque">Estoque</a>
+            <a href="/financeiro">Financeiro</a>
+            <a href="/cadastro">Sair</a>
+        </div>
+    </nav>
+
+    <section class="vendas-section">
+        <div class="container">
+            <h2>Vendas de Produtos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Método de Entrega</th>
+                        <th>Produto</th>
+                        <th>Data da Compra</th>
+                        <th>Parecer da entrega/retirada</th> <!-- Coluna de exclusão -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venda in vendas %}
+                        <tr>
+                            <td>{{ venda[0] }}</td>
+                            <td>{{ venda[1] }}</td>
+                            <td>{{ venda[2] }}</td>
+                            <td>{{ venda[3] }}</td>
+                            <td>{{ venda[4] }}</td>
+                            <td>{{ venda[5] }}</td>
+                            <td>
+                                <!-- Botão de Exclusão -->
+                                <form action="/delete_venda/{{ venda[0] }}" method="POST">
+                                    <button type="submit" class="delete-btn">Não Realizada</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">Nenhuma venda encontrada.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
