@@ -75,6 +75,11 @@ def listar_agendamentos():
     cursor.close()
     db.close()
 
+    # Converter string de data para datetime.date (caso necessário)
+    for ag in agendamentos:
+        if isinstance(ag['data1'], str):
+            ag['data1'] = datetime.strptime(ag['data1'], '%Y-%m-%d').date()
+
     return render_template("agendamentos.html", agendamentos=agendamentos)
 
 

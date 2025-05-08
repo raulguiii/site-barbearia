@@ -74,7 +74,7 @@
                 <td>{{ agendamento.nome }}</td>
                 <td>{{ agendamento.telefone }}</td>
                 <td>{{ agendamento.servico }}</td>
-                <td>{{ agendamento.data1 }}</td>
+                <td>{{ agendamento.data1.strftime('%d/%m/%Y') }}</td>
                 <td>{{ agendamento.horario }}</td>
                 <td>
                     {% if agendamento.candidato == 1 %}
