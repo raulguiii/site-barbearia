@@ -3,6 +3,7 @@ import mysql.connector
 import ast
 import os
 from werkzeug.utils import secure_filename
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'BARBEARIA'
@@ -434,14 +435,24 @@ def comprar():
 
 @app.route('/vendas', methods=['GET'])
 def vendas():
-    # Conectar ao banco de dados
     db = get_db_connection()
     cursor = db.cursor()
 
     try:
-        # Buscar todos os registros de vendas
         cursor.execute("SELECT * FROM vendas_produtos")
-        vendas = cursor.fetchall()
+        dados_vendas = cursor.fetchall()
+
+        vendas = []
+        for venda in dados_vendas:
+            # Converter o campo de data (venda[5]) para o formato desejado
+            data_compra = datetime.strptime(str(venda[5]), "%Y-%m-%d %H:%M:%S")
+            data_formatada = data_compra.strftime("%d/%m/%Y às %H:%M:%S")
+
+            # Substituir a data formatada no registro
+            nova_venda = list(venda)
+            nova_venda[5] = data_formatada
+            vendas.append(nova_venda)
+
     except mysql.connector.Error as err:
         print(f"Erro ao buscar dados do banco: {err}")
         vendas = []
