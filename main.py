@@ -13,7 +13,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="RodrigoMYSQL123",
+        password="raulgui123!",
         database="bd_barbearia"
     )
 
@@ -374,7 +374,7 @@ def pagar(id):
             file.save(file_path)
 
             db = get_db_connection()
- Huntsman cursor = db.cursor()
+            cursor = db.cursor()
             cursor.execute("""
                 UPDATE usuarios
                 SET pagamento_realizado = 1, comprovante = %s
