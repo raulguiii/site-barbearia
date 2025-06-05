@@ -5,51 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Barbeiro</title>
     <link rel="stylesheet" href="../static/css/cadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
     {% set mensagem = get_flashed_messages() %}
     {% if mensagem %}
         <div class="flash_alerta">
-            {{ mensagem[0] }}
+            <i class="fas fa-exclamation-circle"></i> {{ mensagem[0] }}
         </div>
     {% endif %}
 
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="/cadastrados" class="navbar-item">Barbeiros</a>
-            <a href="/relatorio" class="navbar-item">Relatório</a>
-            <a href="/estoque" class="navbar-item">Estoque</a>
-            <a href="/financeiro" class="navbar-item">Financeiro</a> 
-            <a href="/vendas" class="navbar-item">Vendas</a>
-            <a href="/home" class="navbar-item">Home</a>
-            <a href="/login" class="navbar-item">Login</a>
-            
-
-        </div>          
+            <div class="navbar-brand">
+                <a href="/adm"><i class="fas fa-cut"></i> Barbearia</a>
+            </div>
+            <div class="navbar-links">
+                <a href="/cadastrados" class="navbar-item">Barbeiros</a>
+                <a href="/relatorio" class="navbar-item">Relatório</a>
+                <a href="/estoque" class="navbar-item">Estoque</a>
+                <a href="/financeiro" class="navbar-item">Financeiro</a>
+                <a href="/vendas" class="navbar-item">Vendas</a>
+                <a href="/home" class="navbar-item">Home</a>
+            </div>
+            {% if usuario_logado %}
+                <div class="navbar-user">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span class="user-name">{{ usuario_logado.nome }}</span>
+                    <span class="user-cargo">({{ usuario_logado.cargo }})</span>
+                    <a href="/logout" class="btn-logout">Sair</a>
+                </div>
+            {% endif %}
+        </div>
     </nav>
 
     <section class="main-content">
         <div class="form-container">
             <div class="form-card">
-                <h2 class="form-title">Cadastro de Barbeiro</h2>
-
+                <h2 class="form-title"><i class="fas fa-user-plus"></i> Cadastro de Barbeiro</h2>
                 <form action="/cadastrarUsuario" method="post">
                     <div class="input-group">
-                        <label for="nome">Nome Completo</label>
+                        <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
                         <input type="text" name="nome" id="nome" required placeholder="Digite o nome do barbeiro">
                     </div>
-
                     <div class="input-group">
-                        <label for="senha">Senha</label>
+                        <label for="senha"><i class="fas fa-lock"></i> Senha</label>
                         <input type="password" name="senha" id="senha" required placeholder="Escolha uma senha segura">
                     </div>
-
-                    <button type="submit" id="btn_submit">Cadastrar</button>
+                    <button type="submit" class="btn-submit">Cadastrar</button>
                 </form>
             </div>
         </div>
     </section>
-
 </body>
 </html>
