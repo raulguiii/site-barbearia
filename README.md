@@ -49,3 +49,5 @@ CREATE TABLE vendas_produtos (
 
 SELECT * FROM vendas_produtos;
 
+ALTER TABLE usuarios
+ADD cargo VARCHAR(50) NOT NULL DEFAULT 'Barbeiro';
