@@ -1,112 +1,293 @@
-body {
-    font-family: 'Poppins', sans-serif; 
+@charset "UTF-8";
+
+* {
     margin: 0;
     padding: 0;
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Degradê escuro */
-        url('https://img.freepik.com/fotos-gratis/ferramentas-de-salao-de-beleza-vintage-em-uma-mesa-de-madeira-em-empregos-e-conceito-de-carreira_53876-128908.jpg?t=st=1729928422~exp=1729932022~hmac=ae1d07d49b465f40059b3cbe1aea1940f2011076b15157f737f79bd936fd1d1c&w=1380') no-repeat center center fixed;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://images.pexels.com/photos/1570806/pexels-photo-1570806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    color: #f4b41a; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    min-height: 100vh; 
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 15px 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar-brand a {
+    color: #f1c40f;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-item {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background 0.3s ease;
+    border-radius: 5px;
+}
+
+.navbar-item:hover {
+    color: #f1c40f;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-user .user-icon {
+    font-size: 1.8rem;
+    color: #f1c40f;
+}
+
+.navbar-user .user-name {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.navbar-user .user-cargo {
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.btn-logout {
+    padding: 8px 15px;
+    background-color: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: 100px auto 20px;
+    padding: 20px;
 }
 
 h1 {
+    font-size: 2rem;
+    color: #f1c40f;
     text-align: center;
-    margin: 20px 0; 
-    font-size: 3em; 
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); 
-    font-weight: 700; 
-}
-
-table {
-    width: 80%;
-    margin: 40px auto; 
-    border-collapse: collapse;
-    background-color: rgba(0, 0, 0, 0.8); 
-    border-radius: 12px; 
-    overflow: hidden; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
-}
-
-th, td {
-    padding: 20px; 
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
-    text-transform: uppercase; 
-    color: #ffffff; 
-}
-
-th {
-    background-color: rgba(255, 255, 255, 0.1); 
-    font-weight: bold; 
-}
-
-tr:hover {
-    background-color: rgba(255, 255, 255, 0.2); 
-    transition: background-color 0.3s ease; 
-}
-
-a {
-    display: inline-block; 
-    width: 120px; 
-    margin: 20px auto; 
-    text-align: center;
-    padding: 12px; 
-    background-color: #f4b41a; 
-    color: #000; 
-    text-decoration: none;
-    border-radius: 30px; 
-    font-weight: 600; 
-    transition: background-color 0.3s, transform 0.3s; 
-}
-
-a:hover {
-    background-color: #e0a607; 
-    transform: translateY(-3px); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
-
-/* Estilização do botão "Voltar para a Home" */
-.back-home-button {
-    display: inline-block; 
-    width: 150px; 
-    margin: 40px auto; 
-    padding: 15px; 
-    background-color: #f4b41a; 
-    color: #000; 
-    text-align: center;
-    text-decoration: none;
-    border-radius: 30px; 
-    font-weight: 600; 
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.back-home-button:hover {
-    background-color: #e0a607; 
-    transform: translateY(-3px); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .filtros {
-display: flex;
-gap: 10px;
-margin-bottom: 20px;
-justify-content: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
 }
-.filtros input {
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+
+.filtro-item {
+    position: relative;
     width: 250px;
-    transition: 0.3s;
 }
+
+.filtro-item i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f1c40f;
+    font-size: 1rem;
+}
+
+.filtros input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 2px solid #f1c40f;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.filtros input::placeholder {
+    color: #bbb;
+}
+
 .filtros input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
     outline: none;
+    border-color: #f39c12;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.table-container {
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f1c40f;
+    color: #000;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease;
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.status-candidato {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #2ecc71;
+}
+
+.status-pendente {
+    color: #e67e22;
+    font-style: italic;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    background-color: #f1c40f;
+    color: #000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-action:hover {
+    background-color: #f39c12;
+    transform: translateY(-2px);
+}
+
+.btn-realizado {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.btn-realizado:hover {
+    background-color: #27ae60;
+}
+
+.btn-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin: 30px auto;
+    padding: 12px 25px;
+    background-color: #f1c40f;
+    color: #000;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: block;
+    text-align: center;
+    max-width: 200px;
+}
+
+.btn-home:hover {
+    background-color: #f39c12;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navbar-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .navbar-user {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .filtros {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filtro-item {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
 }
