@@ -1,102 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamentos</title>
     <link rel="stylesheet" href="../static/css/agendamentos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .filtros {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        .filtros input {
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            width: 250px;
-            transition: 0.3s;
-        }
-        .filtros input:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-            outline: none;
-        }
-    </style>
-    <script>
-        function filtrarTabela() {
-            let servicoFiltro = document.getElementById("filtroServico").value.toLowerCase();
-            let nomeFiltro = document.getElementById("filtroNome").value.toLowerCase();
-            let candidatoFiltro = document.getElementById("filtroCandidato").value.toLowerCase();
-            let linhas = document.querySelectorAll("tbody tr");
-
-            linhas.forEach(linha => {
-                let servico = linha.cells[2].textContent.toLowerCase();
-                let nome = linha.cells[0].textContent.toLowerCase();
-                let candidato = linha.cells[5].textContent.toLowerCase();
-
-                if ((servico.includes(servicoFiltro) || servicoFiltro === "") &&
-                    (nome.includes(nomeFiltro) || nomeFiltro === "") &&
-                    (candidato.includes(candidatoFiltro) || candidatoFiltro === "")) {
-                    linha.style.display = "";
-                } else {
-                    linha.style.display = "none";
-                }
-            });
-        }
-    </script>
 </head>
 <body>
-    <h1>Lista de Agendamentos</h1>
-    <div class="filtros">
-        <input type="text" id="filtroServico" placeholder="🔍 Filtrar por Serviço" onkeyup="filtrarTabela()">
-        <input type="text" id="filtroNome" placeholder="👤 Filtrar por Nome" onkeyup="filtrarTabela()">
-        <input type="text" id="filtroCandidato" placeholder="✅ Filtrar por Candidatura" onkeyup="filtrarTabela()">
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome Completo</th>
-                <th>Telefone</th>
-                <th>Serviço</th>
-                <th>Data</th>
-                <th>Horário</th>
-                <th>Candidatar-se</th>
-                <th>Corte realizado</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for agendamento in agendamentos %}
-            <tr>
-                <td>{{ agendamento.nome }}</td>
-                <td>{{ agendamento.telefone }}</td>
-                <td>{{ agendamento.servico }}</td>
-                <td>{{ agendamento.data1.strftime('%d/%m/%Y') }}</td>
-                <td>{{ agendamento.horario }}</td>
-                <td>
-                    {% if agendamento.candidato == 1 %}
-                        <i class="fas fa-check-circle" style="color: green;"></i> {{ agendamento.barbeiro_nome }} 
-                    {% else %}
-                        <a href="/candidatar/{{ agendamento.id }}">
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        </a>
-                    {% endif %}
-                </td>
-                <td>
-                    {% if agendamento.candidato == 1 %}
-                        <a href="/deletar/{{ agendamento.id }}" onclick="return confirm('Tem certeza que este corte já foi realizado?');">Corte já realizado!</a>
-                    {% else %}
-                        <!-- Mantém a célula vazia -->
-                    {% endif %}
-                </td>            
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a href="/agendamentos"><i class="fas fa-cut"></i> Barbearia</a>
+            </div>
+            <div class="navbar-links">
+                <!-- Links específicos para barbeiros podem ser adicionados aqui, se necessário -->
+                <a href="/home" class="navbar-item">Home</a>
+            </div>
+            {% if usuario_logado %}
+                <div class="navbar-user">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span class="user-name">{{ usuario_logado.nome }}</span>
+                    <span class="user-cargo">({{ usuario_logado.cargo }})</span>
+                    <a href="/logout" class="btn-logout">Sair</a>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
 
-    <a href="/" class="back-home-button">Voltar para a Home</a> 
+    <section class="main-content">
+        <h1><i class="fas fa-calendar-alt"></i> Lista de Agendamentos</h1>
+        <div class="filtros">
+            <div class="filtro-item">
+                <i class="fas fa-search"></i>
+                <input type="text" id="filtroServico" placeholder="Filtrar por Serviço" onkeyup="filtrarTabela()">
+            </div>
+            <div class="filtro-item">
+                <i class="fas fa-user"></i>
+                <input type="text" id="filtroNome" placeholder="Filtrar por Nome" onkeyup="filtrarTabela()">
+            </div>
+            <div class="filtro-item">
+                <i class="fas fa-check-circle"></i>
+                <input type="text" id="filtroCandidato" placeholder="Filtrar por Candidatura" onkeyup="filtrarTabela()">
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome Completo</th>
+                        <th>Telefone</th>
+                        <th>Serviço</th>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Candidatar-se</th>
+                        <th>Corte Realizado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for agendamento in agendamentos %}
+                    <tr>
+                        <td>{{ agendamento.nome }}</td>
+                        <td>{{ agendamento.telefone }}</td>
+                        <td>{{ agendamento.servico }}</td>
+                        <td>{{ agendamento.data1 }}</td>
+                        <td>{{ agendamento.horario }}</td>
+                        <td>
+                            {% if agendamento.candidato == 1 %}
+                                <span class="status-candidato"><i class="fas fa-check-circle"></i> {{ agendamento.barbeiro_nome }}</span>
+                            {% else %}
+                                <a href="/candidatar/{{ agendamento.id }}" class="btn-action">
+                                    <i class="fas fa-times-circle"></i> Candidatar-se
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if agendamento.candidato == 1 %}
+                                <a href="/deletar/{{ agendamento.id }}" class="btn-action btn-realizado" onclick="return confirm('Tem certeza que este corte já foi realizado?');">
+                                    <i class="fas fa-check"></i> Corte Realizado
+                                </a>
+                            {% else %}
+                                <span class="status-pendente">Pendente</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/" class="btn-home"><i class="fas fa-home"></i> Voltar para a Home</a>
+    </section>
 </body>
+<script>
+    function filtrarTabela() {
+        let servicoFiltro = document.getElementById("filtroServico").value.toLowerCase();
+        let nomeFiltro = document.getElementById("filtroNome").value.toLowerCase();
+        let candidatoFiltro = document.getElementById("filtroCandidato").value.toLowerCase();
+        let linhas = document.querySelectorAll("tbody tr");
+
+        linhas.forEach(linha => {
+            let servico = linha.cells[2].textContent.toLowerCase();
+            let nome = linha.cells[0].textContent.toLowerCase();
+            let candidato = linha.cells[5].textContent.toLowerCase();
+
+            if ((servico.includes(servicoFiltro) || servicoFiltro === "") &&
+                (nome.includes(nomeFiltro) || nomeFiltro === "") &&
+                (candidato.includes(candidatoFiltro) || candidatoFiltro === "")) {
+                linha.style.display = "";
+            } else {
+                linha.style.display = "none";
+            }
+        });
+    }
+</script>
 </html>
