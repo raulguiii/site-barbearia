@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
+    <title>Login - Barbearia</title>
     <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
-
-    {% set menssagem = get_flashed_messages() %}
-    {% if menssagem %}
+    {% set mensagens = get_flashed_messages() %}
+    {% if mensagens %}
         <div class="flash_alerta">
-            {{ menssagem[0] }}
+            <i class="fas fa-exclamation-circle"></i> {{ mensagens[0] }}
         </div>
-    {% endif %}    
+    {% endif %}
 
     <div id="form_fundo">
-        <h1>FAÇA SEU LOGIN</h1>
+        <h1><i class="fas fa-cut"></i> Barbearia</h1>
         <div id="form_frente">
-            <form action="/login" id="login" method="post">
-                <label for="nome">NOME</label>
-                <input type="text" name="nome" id="nome" required placeholder="Digite seu nome">
-                <label for="senha">SENHA</label>
-                <input type="password" name="senha" id="senha" required placeholder="Digite sua senha">
-                <a href="/home" id="btn_cadastro">NÃO É BARBEIRO? CLIQUE AQUI!</a>
-                <button type="submit" id="btn_login">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    ENTRAR
-                </button>
-            </form>
+            {% if usuario_logado %}
+                <div class="user-info">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <h2>Bem-vindo, {{ usuario_logado.nome }}!</h2>
+                    <p><strong>Cargo:</strong> {{ usuario_logado.cargo }}</p>
+                    <div class="user-actions">
+                        {% if usuario_logado.cargo == 'ADM' %}
+                            <a href="/adm" class="btn-action">Painel do Administrador</a>
+                        {% else %}
+                            <a href="/agendamentos" class="btn-action">Ver Agendamentos</a>
+                        {% endif %}
+                        <a href="/logout" class="btn-action btn-logout">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <form action="/login" id="login" method="post">
+                    <div class="input-group">
+                        <label for="nome"><i class="fas fa-user"></i> Nome</label>
+                        <input type="text" name="nome" id="nome" required placeholder="Digite seu nome">
+                    </div>
+                    <div class="input-group">
+                        <label for="senha"><i class="fas fa-lock"></i> Senha</label>
+                        <input type="password" name="senha" id="senha" required placeholder="Digite sua senha">
+                    </div>
+                    <a href="/home" class="link-home">Não é barbeiro? Clique aqui!</a>
+                    <button type="submit" class="btn-login">
+                        Entrar
+                    </button>
+                </form>
+            {% endif %}
         </div>
     </div>
-
 </body>
-
 </html>
